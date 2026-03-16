@@ -2,6 +2,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
+import { LuRocket, LuTarget, LuShieldCheck, LuSparkles, LuSettings, LuBlocks, LuCheck, LuCircleCheck } from "react-icons/lu";
+import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -94,13 +102,13 @@ export default function Home() {
       >
         <div className="container header-container">
           <Link href="#" className="logo">
-            <Image 
-              src="/images/logoxoaphong.png" 
-              alt="MOCMOC Logo" 
-              width={160} 
-              height={50} 
-              style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto' }} 
-              priority 
+            <Image
+              src="/images/logoxoaphong.png"
+              alt="MOCMOC Logo"
+              width={160}
+              height={50}
+              style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto' }}
+              priority
             />
           </Link>
           <nav className={`nav ${navOpen ? "nav-open" : ""}`}>
@@ -168,11 +176,11 @@ export default function Home() {
             </ul>
           </nav>
           <div className="header-actions">
-            <a href="tel:0866969896" className="btn-outline">
-              0866 96 98 96
+            <a href="tel:0336617900" className="btn-outline">
+              033 6617 900
             </a>
             <a href="#consult" className="btn-primary">
-              Nhận Tư Vấn
+              Liên Hệ Ngay
             </a>
           </div>
           <button
@@ -283,7 +291,7 @@ export default function Home() {
 
             <div className="bento-grid">
               <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.1s" }}>
-                <div className="bento-icon">🚀</div>
+                <div className="bento-icon"><LuRocket size={32} color="#E15021" /></div>
                 <h3 className="bento-title">Tốc độ & Hiệu suất</h3>
                 <p className="bento-desc">
                   Tối ưu hình ảnh, giảm thiểu JS/CSS và sử dụng CDN giúp web load nhanh
@@ -292,7 +300,7 @@ export default function Home() {
               </div>
 
               <div className="bento-item bento-large glass-panel fade-in-up" style={{ animationDelay: "0.2s" }}>
-                <div className="bento-icon">🎯</div>
+                <div className="bento-icon"><LuTarget size={32} color="#E15021" /></div>
                 <h3 className="bento-title">Chuẩn SEO Tuyệt Đối</h3>
                 <p className="bento-desc">
                   Tối ưu on-page, URL thân thiện, schema markup và cấu trúc mã nguồn theo
@@ -301,7 +309,7 @@ export default function Home() {
               </div>
 
               <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.3s" }}>
-                <div className="bento-icon">🔒</div>
+                <div className="bento-icon"><LuShieldCheck size={32} color="#E15021" /></div>
                 <h3 className="bento-title">Bảo Mật Tối Đa</h3>
                 <p className="bento-desc">
                   Bảo vệ SSL/HTTPS, chống DDoS, tường lửa và mã hóa dữ liệu an toàn chặn
@@ -310,7 +318,7 @@ export default function Home() {
               </div>
 
               <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.4s" }}>
-                <div className="bento-icon">✨</div>
+                <div className="bento-icon"><LuSparkles size={32} color="#E15021" /></div>
                 <h3 className="bento-title">Chuẩn UI/UX</h3>
                 <p className="bento-desc">
                   Thiết kế sáng tạo, đẹp mắt, responsive đa thiết bị, mang lại trải
@@ -319,7 +327,7 @@ export default function Home() {
               </div>
 
               <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.5s" }}>
-                <div className="bento-icon">⚙️</div>
+                <div className="bento-icon"><LuSettings size={32} color="#E15021" /></div>
                 <h3 className="bento-title">Dễ Dàng Quản Trị</h3>
                 <p className="bento-desc">
                   Hệ thống CMS hiện đại, trực quan, cho phép thao tác cập nhật nội dung
@@ -328,7 +336,7 @@ export default function Home() {
               </div>
 
               <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.6s" }}>
-                <div className="bento-icon">🧩</div>
+                <div className="bento-icon"><LuBlocks size={32} color="#E15021" /></div>
                 <h3 className="bento-title">Tính Năng Đa Dạng</h3>
                 <p className="bento-desc">
                   Tích hợp TMĐT, thanh toán, CRM, Chatbot, dễ dàng mở rộng khi doanh
@@ -444,6 +452,57 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Projects / Slider Section */}
+        <section id="projects" className="projects section-padding" style={{ overflow: 'hidden' }}>
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Dự án <span className="text-gradient">Nổi Bật</span>
+              </h2>
+              <p className="section-desc">
+                Cùng khám phá những sản phẩm công nghệ tuyệt vời mà chúng tôi đã thiết kế và triển khai thành công.
+              </p>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                coverflowEffect={{
+                  rotate: 0,
+                  stretch: 0,
+                  depth: 100,
+                  modifier: 2,
+                  slideShadows: false,
+                }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{ clickable: true }}
+                modules={[EffectCoverflow, Pagination, Autoplay]}
+                className="mySwiper"
+                style={{ paddingBottom: '3rem' }}
+              >
+                {[1, 2, 3, 4, 5].map((item) => (
+                  <SwiperSlide key={item} style={{ width: '300px', height: '400px' }}>
+                    <div className="glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '15px', overflow: 'hidden', padding: '1rem', background: 'rgba(255, 255, 255, 0.9)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
+                      <div style={{ flex: 1, backgroundColor: '#f1f3f5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
+                        <Image src={`/images/logoxoaphong.png`} alt={`Project ${item}`} width={120} height={40} style={{ opacity: 0.5, objectFit: 'contain' }} />
+                      </div>
+                      <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#111827' }}>Giao Diện Mẫu {item}</h3>
+                      <p style={{ color: 'rgba(17, 24, 39, 0.7)', fontSize: '0.9rem', marginBottom: '1rem' }}>Thiết kế Web App cao cấp tối ưu trải nghiệm người dùng.</p>
+                      <a href="#" className="btn-outline" style={{ marginTop: 'auto', textAlign: 'center' }}>Xem Chi Tiết</a>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
         {/* Pricing Section */}
         <section id="pricing" className="pricing section-padding">
           <div className="container">
@@ -472,13 +531,13 @@ export default function Home() {
                   </div>
                 </div>
                 <ul className="plan-features">
-                  <li><i className="icon-check"></i> 1-3 ngày hoàn thành</li>
-                  <li><i className="icon-check"></i> Tặng Domain & Hosting ưu đãi</li>
-                  <li><i className="icon-check"></i> Template tối ưu chuyển đổi</li>
-                  <li><i className="icon-check"></i> Cấu trúc chuẩn SEO</li>
-                  <li><i className="icon-check"></i> Bảo mật SSL</li>
-                  <li><i className="icon-check"></i> Nhúng Live Chat, Google Analytics</li>
-                  <li><i className="icon-check"></i> Bảo hành trọn đời</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 1-3 ngày hoàn thành</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting ưu đãi</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Template tối ưu chuyển đổi</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Cấu trúc chuẩn SEO</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Bảo mật SSL</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Nhúng Live Chat, Google Analytics</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Bảo hành trọn đời</li>
                 </ul>
                 <div className="pricing-footer">
                   <a href="#consult" className="btn-outline btn-full">
@@ -503,17 +562,17 @@ export default function Home() {
                   </div>
                 </div>
                 <ul className="plan-features">
-                  <li><i className="icon-check highlight-icon"></i> 6-10 ngày hoàn thành</li>
-                  <li><i className="icon-check highlight-icon"></i> Giao diện độc quyền sáng tạo</li>
-                  <li><i className="icon-check"></i> Tặng Domain & Hosting 1 năm</li>
-                  <li><i className="icon-check highlight-icon"></i> Tặng Fanpage 2000 Follows</li>
-                  <li><i className="icon-check highlight-icon"></i> Tặng 1 Video AI 30s Marketing</li>
-                  <li><i className="icon-check"></i> Tặng 5 Email đuôi tên miền</li>
-                  <li><i className="icon-check"></i> WP Rocket Premium</li>
-                  <li><i className="icon-check"></i> Upload 10 Bài/Sản phẩm + 5 Trang</li>
-                  <li><i className="icon-check"></i> Tích hợp VietQR, VNPAY, MOMO</li>
-                  <li><i className="icon-check"></i> Kết nối GHTK, GHN...</li>
-                  <li><i className="icon-check"></i> Mọi tính năng Gói Basic</li>
+                  <li><LuCircleCheck size={20} color="#E15021" style={{ flexShrink: 0, marginTop: '2px' }} /> 6-10 ngày hoàn thành</li>
+                  <li><LuCircleCheck size={20} color="#E15021" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện độc quyền sáng tạo</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting 1 năm</li>
+                  <li><LuCircleCheck size={20} color="#E15021" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Fanpage 2000 Follows</li>
+                  <li><LuCircleCheck size={20} color="#E15021" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng 1 Video AI 30s Marketing</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng 5 Email đuôi tên miền</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> WP Rocket Premium</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Upload 10 Bài/Sản phẩm + 5 Trang</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp VietQR, VNPAY, MOMO</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Kết nối GHTK, GHN...</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Basic</li>
                 </ul>
                 <div className="pricing-footer">
                   <a href="#consult" className="btn-primary btn-full pulse">
@@ -536,17 +595,17 @@ export default function Home() {
                   </div>
                 </div>
                 <ul className="plan-features">
-                  <li><i className="icon-check"></i> &gt; 9 ngày hoàn thành</li>
-                  <li><i className="icon-check"></i> Chỉnh sửa thiết kế đến khi hài lòng</li>
-                  <li><i className="icon-check"></i> Thiết kế chuẩn Brand Guideline</li>
-                  <li><i className="icon-check"></i> Đồng bộ hệ thống CRM đa kênh</li>
-                  <li><i className="icon-check"></i> Tích hợp ChatGPT / AI</li>
-                  <li><i className="icon-check"></i> Tích hợp VR, AR, 3D Review</li>
-                  <li><i className="icon-check"></i> Quản lý bán hàng nội bộ</li>
-                  <li><i className="icon-check"></i> Hosting 8GB siêu tốc</li>
-                  <li><i className="icon-check"></i> Đa ngôn ngữ</li>
-                  <li><i className="icon-check"></i> Tối ưu SEO Onpage toàn site sâu</li>
-                  <li><i className="icon-check"></i> Mọi tính năng Gói Business</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Thiết kế chuẩn Brand Guideline</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đồng bộ hệ thống CRM đa kênh</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp ChatGPT / AI</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp VR, AR, 3D Review</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Quản lý bán hàng nội bộ</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Hosting 8GB siêu tốc</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tối ưu SEO Onpage toàn site sâu</li>
+                  <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Business</li>
                 </ul>
                 <div className="pricing-footer">
                   <a href="#consult" className="btn-outline btn-full">
@@ -588,17 +647,17 @@ export default function Home() {
           <div className="footer-grid">
             <div className="footer-brand">
               <Link href="#" className="logo">
-                <Image 
-                  src="/images/logoxoaphong.png" 
-                  alt="MOCMOC Logo" 
-                  width={160} 
-                  height={50} 
-                  style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto' }} 
+                <Image
+                  src="/images/logoxoaphong.png"
+                  alt="MOCMOC Logo"
+                  width={160}
+                  height={50}
+                  style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto' }}
                 />
               </Link>
               <p className="footer-slogan">ĐỔI MỚI CÔNG NGHỆ - TỐI ĐA HIỆU QUẢ</p>
               <p className="footer-contact">
-                Hotline: <strong className="text-gradient">0866 96 98 96</strong>
+                Hotline: <strong className="text-gradient">033 6617 900</strong>
               </p>
             </div>
             <div className="footer-links">
@@ -622,9 +681,9 @@ export default function Home() {
             <div className="footer-social">
               <h3>Kết Nối</h3>
               <div className="social-icons">
-                <Link href="#" className="social-icon">FB</Link>
-                <Link href="#" className="social-icon">TT</Link>
-                <Link href="#" className="social-icon">YT</Link>
+                <Link href="#" className="social-icon"><FaFacebookF size={18} /></Link>
+                <Link href="#" className="social-icon"><FaTiktok size={18} /></Link>
+                <Link href="#" className="social-icon"><FaYoutube size={18} /></Link>
               </div>
             </div>
           </div>
