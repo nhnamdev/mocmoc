@@ -470,39 +470,39 @@ export default function Home() {
                 grabCursor={true}
                 centeredSlides={true}
                 slidesPerView={'auto'}
+                initialSlide={1}
+                loop={true}
                 coverflowEffect={{
-                  rotate: 0,
+                  rotate: 20,
                   stretch: 0,
-                  depth: 100,
-                  modifier: 2,
-                  slideShadows: false,
+                  depth: 200,
+                  modifier: 1,
+                  slideShadows: true,
                 }}
                 autoplay={{
                   delay: 3000,
                   disableOnInteraction: false,
                 }}
-                pagination={{ clickable: true }}
+                pagination={{ clickable: true, dynamicBullets: true }}
                 modules={[EffectCoverflow, Pagination, Autoplay]}
-                className="mySwiper"
+                className="project-swiper"
                 style={{ paddingBottom: '3rem' }}
               >
                 {[
-                  { id: 1, title: 'Web Dịch Vụ Vận Chuyển', desc: 'Giao diện mẫu công ty vận tải, logistics chuyên nghiệp.', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
-                  { id: 2, title: 'Web Bán Giày', desc: 'Cửa hàng giày thời trang online, giao diện hiện đại, tối ưu chuyển đổi.', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
-                  { id: 3, title: 'Web Bất Động Sản', desc: 'Nền tảng BDS chuyên nghiệp, tìm kiếm và đăng tin bất động sản dễ dàng.', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
-                  { id: 4, title: 'Thương Mại Điện Tử', desc: 'Shop bán hàng online đầy đủ tính năng giỏ hàng, thanh toán.', link: '#', image: '/images/logoxoaphong.png', blank: false },
-                  { id: 5, title: 'Web Mỹ Phẩm / Spa', desc: 'Thiết kế sang trọng, tối giản, thu hút phái đẹp.', link: '#', image: '/images/logoxoaphong.png', blank: false },
-                  { id: 6, title: 'Web Giáo Dục / Khóa Học', desc: 'Hệ thống e-learning tối ưu hóa trải nghiệm học viên trực tuyến.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
+                  { id: 2, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
+                  { id: 3, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
+                  { id: 4, title: 'THƯƠNG MẠI ĐIỆN TỬ', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 5, title: 'WEB MỸ PHẨM / SPA', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 6, title: 'WEB GIÁO DỤC / KHÓA HỌC', link: '#', image: '/images/logoxoaphong.png', blank: false },
                 ].map((item) => (
-                  <SwiperSlide key={item.id} style={{ width: '300px', height: '400px' }}>
-                    <div className="glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '15px', overflow: 'hidden', padding: '1rem', background: 'rgba(255, 255, 255, 0.9)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-                      <div style={{ flex: 1, backgroundColor: '#f1f3f5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', overflow: 'hidden', position: 'relative' }}>
-                        <Image src={item.image} alt={item.title} width={268} height={180} style={{ objectFit: 'contain', width: '100%', height: '100%' }} />
+                  <SwiperSlide key={item.id} className="project-slide">
+                    <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
+                      <div className="project-img-wrap">
+                        <img src={item.image} alt={item.title} />
                       </div>
-                      <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#111827' }}>{item.title}</h3>
-                      <p style={{ color: 'rgba(17, 24, 39, 0.7)', fontSize: '0.9rem', marginBottom: '1rem' }}>{item.desc}</p>
-                      <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="btn-outline" style={{ marginTop: 'auto', textAlign: 'center' }}>Xem Mẫu Web</a>
-                    </div>
+                      <p className="project-slide-title">{item.title}</p>
+                    </a>
                   </SwiperSlide>
                 ))}
               </Swiper>
