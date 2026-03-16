@@ -24,6 +24,10 @@ export const metadata = {
     title: "Thiết Kế Website Giá Rẻ - Chuyên Nghiệp, Chuẩn SEO | MOCMOC",
     description: "Giải pháp thiết kế website giá rẻ, chuyên nghiệp, tối ưu chi phí cho cá nhân và doanh nghiệp. Gọi ngay 033 6617 900.",
   },
+  icons: {
+    icon: '/images/logomocmocnho.png',
+    apple: '/images/logomocmocnho.png',
+  },
   robots: {
     index: true,
     follow: true,
