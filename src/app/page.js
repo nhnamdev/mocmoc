@@ -634,14 +634,9 @@ export default function Home() {
                 tư vấn hoàn toàn miễn phí, kiến tạo giá trị thực cho tương lai số của bạn.
               </p>
               <div className="cta-form">
-                <div className="input-group">
-                  <input
-                    type="text"
-                    placeholder="Nhập số điện thoại của bạn"
-                    className="glass-input"
-                  />
-                  <button className="btn-primary">Yêu Cầu Tư Vấn</button>
-                </div>
+                <a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="btn-primary btn-cta-large">
+                  Liên Hệ Ngay
+                </a>
               </div>
             </div>
           </div>
