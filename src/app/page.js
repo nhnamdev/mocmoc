@@ -486,15 +486,21 @@ export default function Home() {
                 className="mySwiper"
                 style={{ paddingBottom: '3rem' }}
               >
-                {[1, 2, 3, 4, 5].map((item) => (
-                  <SwiperSlide key={item} style={{ width: '300px', height: '400px' }}>
+                {[
+                  { id: 1, title: 'Web Dịch Vụ Vận Chuyển', desc: 'Giao diện mẫu công ty vận tải, logistics chuyên nghiệp.', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
+                  { id: 2, title: 'Web App Landing Page', desc: 'Giao diện chuẩn phân tích và giới thiệu phần mềm ứng dụng.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 3, title: 'Thương Mại Điện Tử', desc: 'Shop bán hàng online đầy đủ tính năng giỏ hàng, thanh toán.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 4, title: 'Web Mỹ Phẩm / Spa', desc: 'Thiết kế sang trọng, tối giản, thu hút phái đẹp.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 5, title: 'Web Giáo Dục / Khóa Học', desc: 'Hệ thống e-learning tối ưu hóa trải nghiệm học viện trực tuyến.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                ].map((item) => (
+                  <SwiperSlide key={item.id} style={{ width: '300px', height: '400px' }}>
                     <div className="glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '15px', overflow: 'hidden', padding: '1rem', background: 'rgba(255, 255, 255, 0.9)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-                      <div style={{ flex: 1, backgroundColor: '#f1f3f5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
-                        <Image src={`/images/logoxoaphong.png`} alt={`Project ${item}`} width={120} height={40} style={{ opacity: 0.5, objectFit: 'contain' }} />
+                      <div style={{ flex: 1, backgroundColor: '#f1f3f5', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem', overflow: 'hidden', position: 'relative' }}>
+                        <Image src={item.image} alt={item.title} width={268} height={180} style={{ objectFit: 'contain', width: '100%', height: '100%' }} />
                       </div>
-                      <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#111827' }}>Giao Diện Mẫu {item}</h3>
-                      <p style={{ color: 'rgba(17, 24, 39, 0.7)', fontSize: '0.9rem', marginBottom: '1rem' }}>Thiết kế Web App cao cấp tối ưu trải nghiệm người dùng.</p>
-                      <a href="#" className="btn-outline" style={{ marginTop: 'auto', textAlign: 'center' }}>Xem Chi Tiết</a>
+                      <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem', color: '#111827' }}>{item.title}</h3>
+                      <p style={{ color: 'rgba(17, 24, 39, 0.7)', fontSize: '0.9rem', marginBottom: '1rem' }}>{item.desc}</p>
+                      <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="btn-outline" style={{ marginTop: 'auto', textAlign: 'center' }}>Xem Mẫu Web</a>
                     </div>
                   </SwiperSlide>
                 ))}
