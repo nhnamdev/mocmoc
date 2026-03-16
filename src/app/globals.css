@@ -767,3 +767,53 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(calc(-100% + 400px));
   }
 }
+
+/* Performance optimizations */
+.hero-video {
+    will-change: transform;
+}
+
+.fade-in-up {
+    will-change: opacity, transform;
+}
+
+.pulse {
+    will-change: box-shadow;
+}
+
+/* Tắt animation cho người dùng prefer-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Tắt animation nặng trên mobile để tiết kiệm pin */
+@media (max-width: 768px) {
+    .pulse { animation: none; }
+    .hero {
+        min-height: 100svh;
+    }
+    .hero-video {
+        display: block;
+        object-position: 70% center;
+    }
+    .hero-overlay {
+        background: linear-gradient(
+            to right,
+            rgba(5, 10, 20, 0.7) 0%,
+            rgba(5, 10, 20, 0.5) 50%,
+            rgba(5, 10, 20, 0.3) 100%
+        );
+    }
+}
+
+/* Mobile hero - ẩn bớt chữ */
+@media (max-width: 768px) {
+    .hero-subtitle { display: none; }
+    .hero-stats { display: none; }
+    .hero-pre { display: none; }
+    .hero-container { width: 85%; }
+}

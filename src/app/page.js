@@ -215,6 +215,8 @@ export default function Home() {
             <video
               className="hero-video"
               autoPlay muted loop playsInline
+              preload="metadata"
+              poster="/images/dichvuvanchuyen.png"
             >
               <source src="/videos/video-index-home.mp4" type="video/mp4" />
             </video>
@@ -235,7 +237,7 @@ export default function Home() {
               </p>
               <div className="hero-cta">
                 <a href="#consult" className="btn-hero-primary">
-                  Tư Vấn Miễn Phí
+                  Liên Hệ Ngay
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
@@ -489,7 +491,7 @@ export default function Home() {
                   <SwiperSlide key={item.id} className="project-slide">
                     <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
                       <div className="project-img-wrap">
-                        <img src={item.image} alt={item.title} />
+                        <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
                       </div>
                       <p className="project-slide-title">{item.title}</p>
                     </a>

@@ -2,8 +2,8 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const outfit = Outfit({ subsets: ["latin"], weight: ["400", "600", "700", "800"], variable: "--font-heading" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const outfit = Outfit({ subsets: ["latin"], weight: ["400", "600", "700", "800"], variable: "--font-heading", display: "swap" });
 
 export const metadata = {
   title: "Thiết Kế Website Giá Rẻ - Chuyên Nghiệp, Chuẩn SEO | MOCMOC",
@@ -50,8 +50,8 @@ export default function RootLayout({ children }) {
     <html lang="vi" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
         {children}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-33R9G7ML1Q" strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-33R9G7ML1Q" strategy="lazyOnload" />
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
