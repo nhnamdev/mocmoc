@@ -491,6 +491,7 @@ export default function Home() {
                 {[
                   { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
                   { id: 7, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
+                  { id: 8, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
                   { id: 2, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
                   { id: 3, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
                   { id: 4, title: 'THƯƠNG MẠI ĐIỆN TỬ', link: '#', image: '/images/logoxoaphong.png', blank: false },
