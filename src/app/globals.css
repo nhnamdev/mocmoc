@@ -810,10 +810,12 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Mobile hero - ẩn bớt chữ */
+/* Mobile hero */
 @media (max-width: 768px) {
-    .hero-subtitle { display: none; }
-    .hero-stats { display: none; }
-    .hero-pre { display: none; }
-    .hero-container { width: 85%; }
+    .hero-container { width: 100%; margin-left: 0; padding-right: 0; }
+    .hero-stats { flex-wrap: nowrap; }
+    .hero-stat { padding: 0 0.6rem; }
+    .hero-stat-num { font-size: 1.1rem; }
+    .hero-stat-label { font-size: 0.65rem; }
+    .hero-stat-divider { height: 24px; }
 }
