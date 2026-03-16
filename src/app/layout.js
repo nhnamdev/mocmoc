@@ -1,5 +1,6 @@
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "600", "700", "800"], variable: "--font-heading" });
@@ -39,6 +40,9 @@ export const metadata = {
       'max-snippet': -1,
     },
   },
+  verification: {
+    google: "eVdJKbkk4JBjVY3Z70CH3kkhd30_LLceJUUO2ikzKQ0",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -46,6 +50,15 @@ export default function RootLayout({ children }) {
     <html lang="vi" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
         {children}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-33R9G7ML1Q" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-33R9G7ML1Q');
+          `}
+        </Script>
       </body>
     </html>
   );
