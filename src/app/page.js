@@ -96,7 +96,7 @@ export default function Home() {
     <>
       {/* Header */}
       <header
-        className={`header ${scrolled ? "scrolled" : ""}`}
+        className={`header ${scrolled ? "scrolled" : "header-transparent"}`}
         id="header"
         ref={headerRef}
       >
@@ -210,67 +210,55 @@ export default function Home() {
       <main>
         {/* Hero Section */}
         <section id="home" className="hero">
-          <div className="hero-bg-glow"></div>
-          <div className="hero-bg-grid"></div>
+          {/* Video nền - sẽ bổ sung sau */}
+          <div className="hero-video-wrap">
+            <video
+              className="hero-video"
+              autoPlay muted loop playsInline
+            >
+              <source src="/videos/video-index-home.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Gradient overlay trái sang phải */}
+          <div className="hero-overlay"></div>
+
           <div className="container hero-container">
-            <div className="hero-content fade-in-up">
-              <div className="badge">Đổi mới công nghệ - Tối đa hiệu quả</div>
+            <div className="hero-left fade-in-up">
+              <p className="hero-pre">Thiết kế website chuyên nghiệp</p>
               <h1 className="hero-title">
-                Thiết kế website <br />
-                <span className="text-gradient">Chuyên Nghiệp</span>
-                <br />
-                cùng MOCMOC
+                Nâng tầm thương hiệu<br />
+                <span className="text-gradient-white">vượt trội cùng MOCMOC</span>
               </h1>
               <p className="hero-subtitle">
-                Kiến tạo trải nghiệm số vượt trội với giao diện chuẩn UI/UX, nền
-                tảng mạnh mẽ và tối ưu SEO hoàn hảo cho doanh nghiệp của bạn.
+                Giao diện chuẩn UI/UX, tối ưu SEO hoàn hảo,<br />
+                bàn giao nhanh — bảo hành trọn đời.
               </p>
               <div className="hero-cta">
-                <a href="#pricing" className="btn-primary btn-large">
-                  Bảng Giá Chi Tiết
-                </a>
-                <a href="#consult" className="btn-secondary btn-large">
+                <a href="#consult" className="btn-hero-primary">
                   Tư Vấn Miễn Phí
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
-            </div>
-
-            <div className="hero-stats fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <div className="stat-card glass-panel">
-                <h3 className="stat-number">
-                  <span className="counter" data-target="7">
-                    0
-                  </span>
-                  +
-                </h3>
-                <p className="stat-label">Năm Kinh Nghiệm</p>
-              </div>
-              <div className="stat-card glass-panel">
-                <h3 className="stat-number">
-                  <span className="counter" data-target="3686">
-                    0
-                  </span>
-                  +
-                </h3>
-                <p className="stat-label">Khách Hàng</p>
-              </div>
-              <div className="stat-card glass-panel">
-                <h3 className="stat-number">
-                  <span className="counter" data-target="5000">
-                    0
-                  </span>
-                  +
-                </h3>
-                <p className="stat-label">Dự Án Hoàn Thành</p>
-              </div>
-              <div className="stat-card glass-panel">
-                <h3 className="stat-number">
-                  <span className="counter" data-target="98">
-                    0
-                  </span>
-                  %
-                </h3>
-                <p className="stat-label">Khách Hàng Hài Lòng</p>
+              <div className="hero-stats fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="5000">0</span>+</span>
+                  <span className="hero-stat-label">Dự Án</span>
+                </div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="3686">0</span>+</span>
+                  <span className="hero-stat-label">Khách Hàng</span>
+                </div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="7">0</span>+</span>
+                  <span className="hero-stat-label">Năm KN</span>
+                </div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="98">0</span>%</span>
+                  <span className="hero-stat-label">Hài Lòng</span>
+                </div>
               </div>
             </div>
           </div>
