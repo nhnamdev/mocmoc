@@ -488,10 +488,11 @@ export default function Home() {
               >
                 {[
                   { id: 1, title: 'Web Dịch Vụ Vận Chuyển', desc: 'Giao diện mẫu công ty vận tải, logistics chuyên nghiệp.', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
-                  { id: 2, title: 'Web App Landing Page', desc: 'Giao diện chuẩn phân tích và giới thiệu phần mềm ứng dụng.', link: '#', image: '/images/logoxoaphong.png', blank: false },
-                  { id: 3, title: 'Thương Mại Điện Tử', desc: 'Shop bán hàng online đầy đủ tính năng giỏ hàng, thanh toán.', link: '#', image: '/images/logoxoaphong.png', blank: false },
-                  { id: 4, title: 'Web Mỹ Phẩm / Spa', desc: 'Thiết kế sang trọng, tối giản, thu hút phái đẹp.', link: '#', image: '/images/logoxoaphong.png', blank: false },
-                  { id: 5, title: 'Web Giáo Dục / Khóa Học', desc: 'Hệ thống e-learning tối ưu hóa trải nghiệm học viện trực tuyến.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 2, title: 'Web Bán Giày', desc: 'Cửa hàng giày thời trang online, giao diện hiện đại, tối ưu chuyển đổi.', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
+                  { id: 3, title: 'Web Bất Động Sản', desc: 'Nền tảng BDS chuyên nghiệp, tìm kiếm và đăng tin bất động sản dễ dàng.', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
+                  { id: 4, title: 'Thương Mại Điện Tử', desc: 'Shop bán hàng online đầy đủ tính năng giỏ hàng, thanh toán.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 5, title: 'Web Mỹ Phẩm / Spa', desc: 'Thiết kế sang trọng, tối giản, thu hút phái đẹp.', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 6, title: 'Web Giáo Dục / Khóa Học', desc: 'Hệ thống e-learning tối ưu hóa trải nghiệm học viên trực tuyến.', link: '#', image: '/images/logoxoaphong.png', blank: false },
                 ].map((item) => (
                   <SwiperSlide key={item.id} style={{ width: '300px', height: '400px' }}>
                     <div className="glass-panel" style={{ height: '100%', display: 'flex', flexDirection: 'column', borderRadius: '15px', overflow: 'hidden', padding: '1rem', background: 'rgba(255, 255, 255, 0.9)', boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
