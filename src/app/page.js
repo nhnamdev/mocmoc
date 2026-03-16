@@ -350,7 +350,6 @@ export default function Home() {
             </div>
 
             <div className="timeline">
-              <div className="timeline-line"></div>
 
               <div className="timeline-item">
                 <div className="timeline-dot">1</div>
@@ -416,7 +415,6 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-
               <div className="timeline-item">
                 <div className="timeline-dot">7</div>
                 <div className="timeline-content glass-panel fade-in-up">
@@ -480,12 +478,16 @@ export default function Home() {
               >
                 {[
                   { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
+                  { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
+                  { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
+                  { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
+                  { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
+           { id: 6, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
                   { id: 7, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
                   { id: 8, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
-                  { id: 2, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
-                  { id: 3, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
-                  { id: 4, title: 'THƯƠNG MẠI ĐIỆN TỬ', link: '#', image: '/images/logoxoaphong.png', blank: false },
-                  { id: 5, title: 'WEB MỸ PHẨM / SPA', link: '#', image: '/images/logoxoaphong.png', blank: false },
+                  { id: 9, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
+                  { id: 10, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
+            
           
                 ].map((item) => (
                   <SwiperSlide key={item.id} className="project-slide">
