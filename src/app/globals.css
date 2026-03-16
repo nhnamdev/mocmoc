@@ -670,14 +670,17 @@ h1, h2, h3, h4, h5, h6 {
     .footer-grid { grid-template-columns: 1fr 1fr; }
 }
 
-@media (max-width: 768px) {
+/* Header responsive: ẩn nav trên tablet + mobile */
+@media (max-width: 1024px) {
     .nav { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: rgba(255, 255, 255, 0.98); flex-direction: column; align-items: center; justify-content: center; transition: var(--transition-smooth); backdrop-filter: blur(20px); z-index: 999;}
     .nav.nav-open { left: 0; }
     .nav-list { flex-direction: column; text-align: center; gap: 2rem;}
     .nav-link { font-size: 1.2rem; }
     .header-actions { display: none; }
     .mobile-toggle { display: flex; }
-    
+}
+
+@media (max-width: 768px) {
     .bento-grid { grid-template-columns: 1fr; }
     .bento-large { grid-column: span 1; }
     
