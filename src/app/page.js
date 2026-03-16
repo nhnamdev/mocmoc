@@ -179,7 +179,7 @@ export default function Home() {
             <a href="tel:0336617900" className="btn-outline">
               033 6617 900
             </a>
-            <a href="#consult" className="btn-primary">
+            <a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Liên Hệ Ngay
             </a>
           </div>
