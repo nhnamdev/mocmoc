@@ -530,9 +530,9 @@ export default function Home() {
                     Hoàn hảo cho khởi đầu, giao diện chuẩn SEO với chi phí tối ưu.
                   </p>
                   <div className="plan-price">
-                    <span className="old-price">3.990.000 VNĐ</span>
+                    <span className="old-price">1.990.000 VNĐ</span>
                     <span className="current-price">
-                      2.200.000 <span className="currency">VNĐ</span>
+                      799.000 <span className="currency">VNĐ</span>
                     </span>
                   </div>
                 </div>
@@ -561,9 +561,9 @@ export default function Home() {
                     Tối ưu công nghệ, thiết kế độc quyền nâng tầm doanh nghiệp.
                   </p>
                   <div className="plan-price">
-                    <span className="old-price">11.990.000 VNĐ</span>
+                    <span className="old-price">4.990.000 VNĐ</span>
                     <span className="current-price text-gradient">
-                      8.999.000 <span className="currency">VNĐ</span>
+                      1.999.000 <span className="currency">VNĐ</span>
                     </span>
                   </div>
                 </div>
