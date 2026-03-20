@@ -102,13 +102,10 @@ export default function Home() {
       >
         <div className="container header-container">
           <Link href="#" className="logo">
-            <Image
+            <img
               src="/images/logoxoaphong.png"
               alt="MOCMOC Logo"
-              width={160}
-              height={50}
-              style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto' }}
-              priority
+              style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto', height: '50px' }}
             />
           </Link>
           <nav className={`nav ${navOpen ? "nav-open" : ""}`}>
@@ -638,12 +635,10 @@ export default function Home() {
           <div className="footer-grid">
             <div className="footer-brand">
               <Link href="#" className="logo">
-                <Image
+                <img
                   src="/images/logoxoaphong.png"
                   alt="MOCMOC Logo"
-                  width={160}
-                  height={50}
-                  style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto' }}
+                  style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto', height: '50px' }}
                 />
               </Link>
               <p className="footer-slogan">ĐỔI MỚI CÔNG NGHỆ - TỐI ĐA HIỆU QUẢ</p>

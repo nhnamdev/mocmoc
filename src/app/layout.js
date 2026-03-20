@@ -15,7 +15,7 @@ export const metadata = {
   openGraph: {
     title: "Thiết Kế Website Giá Rẻ - Chuyên Nghiệp, Chuẩn SEO | MOCMOC",
     description: "Dịch vụ thiết kế website giá rẻ, trọn gói, chuyên nghiệp và chuẩn SEO từ MOCMOC. Tối ưu chi phí, nâng tầm thương hiệu, giao diện độc quyền, bảo hành trọn đời.",
-    url: "https://mocmoc.vn",
+    url: "https://mocmoc.id.vn",
     siteName: "MOCMOC",
     locale: "vi_VN",
     type: "website",
