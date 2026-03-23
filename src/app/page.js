@@ -235,7 +235,7 @@ export default function Home() {
               <div className="hero-cta">
                 <a href="#consult" className="btn-hero-primary">
                   Liên Hệ Ngay
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
                 </a>
               </div>
               <div className="hero-stats fade-in-up" style={{ animationDelay: "0.3s" }}>
@@ -481,12 +481,12 @@ export default function Home() {
                   { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
 
                   { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', blank: true },
-                  { id: 7, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
-                  { id: 8, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
-                  { id: 9, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
+                  { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', blank: true },
+                  { id: 8, title: 'WEB SUSHI FOOD', link: 'https://sushingon.vercel.app/', image: '/images/sushingon.png', blank: true },
+                  { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', blank: true },
                   { id: 10, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
-            
-          
+
+
                 ].map((item) => (
                   <SwiperSlide key={item.id} className="project-slide">
                     <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
