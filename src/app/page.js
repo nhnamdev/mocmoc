@@ -482,7 +482,7 @@ export default function Home() {
 
                   { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', blank: true },
                   { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', blank: true },
-                  { id: 8, title: 'WEB SUSHI FOOD', link: 'https://sushingon.vercel.app/', image: '/images/sushingon.png', blank: true },
+          
                   { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', blank: true },
                   { id: 10, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
 
