@@ -23,7 +23,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Thiết Kế Website Giá Rẻ - Chuyên Nghiệp, Chuẩn SEO | MOCMOC",
-    description: "Giải pháp thiết kế website giá rẻ, chuyên nghiệp, tối ưu chi phí cho cá nhân và doanh nghiệp. Gọi ngay 033 6617 900.",
+    description: "Giải pháp thiết kế website giá rẻ, chuyên nghiệp, tối ưu chi phí cho cá nhân và doanh nghiệp. Gọi ngay 0858 200 725.",
   },
   icons: {
     icon: '/images/logomocmocnho.png',

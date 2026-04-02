@@ -173,8 +173,8 @@ export default function Home() {
             </ul>
           </nav>
           <div className="header-actions">
-            <a href="tel:0336617900" className="btn-outline">
-              033 6617 900
+            <a href="tel:0858200725" className="btn-outline">
+              0858 200 725
             </a>
             <a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="btn-primary">
               Liên Hệ Ngay
@@ -643,7 +643,7 @@ export default function Home() {
               </Link>
               <p className="footer-slogan">ĐỔI MỚI CÔNG NGHỆ - TỐI ĐA HIỆU QUẢ</p>
               <p className="footer-contact">
-                Hotline: <strong className="text-gradient">033 6617 900</strong>
+                Hotline: <strong className="text-gradient">0858 200 725</strong>
               </p>
             </div>
             <div className="footer-links">
