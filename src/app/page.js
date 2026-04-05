@@ -94,6 +94,18 @@ export default function Home() {
 
   return (
     <>
+      <div className="affiliate-topbar">
+        <div className="container affiliate-topbar-inner">
+          <p className="affiliate-topbar-text">
+            Lời mời hợp tác cùng MOCMOC: Trở thành đối tác thân thiết, cùng nhau tạo thu nhập bền vững.
+          </p>
+          <div className="affiliate-topbar-actions">
+            <a href="#consult" className="affiliate-topbar-btn primary">Nhận tư vấn ngay</a>
+            <a href="tel:0858200725" className="affiliate-topbar-btn ghost">Hotline 0858 200 725</a>
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <header
         className={`header ${scrolled ? "scrolled" : "header-transparent"}`}
@@ -213,7 +225,7 @@ export default function Home() {
               className="hero-video"
               autoPlay muted loop playsInline
               preload="metadata"
-              poster="/images/dichvuvanchuyen.png"
+              poster="/images/bia mocmoc.png"
             >
               <source src="/videos/video-index-home.mp4" type="video/mp4" />
             </video>
@@ -474,7 +486,7 @@ export default function Home() {
                 style={{ paddingBottom: '3rem' }}
               >
                 {[
-                  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: '/dichvuvanchuyen/index.html', image: '/images/dichvuvanchuyen.png', blank: true },
+                  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', blank: true },
                   { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
                   { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
                   { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },

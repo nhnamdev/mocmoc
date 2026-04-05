@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://chuyennhanhanhkontum.com/sitemap.xml
