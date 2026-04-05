@@ -275,6 +275,61 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Services Section */}
+        <section id="services" className="services section-padding dark-bg">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Dịch vụ <span className="text-gradient">Công Nghệ Toàn Diện</span>
+              </h2>
+              <p className="section-desc">
+                Thiết kế website, app mobile, AI chatbot và giải pháp dành cho sinh viên CNTT.
+              </p>
+            </div>
+
+            <div className="services-grid">
+              <article className="service-card glass-panel fade-in-up" style={{ animationDelay: "0.1s" }}>
+                <div className="bento-icon"><LuRocket size={30} color="#E15021" /></div>
+                <h3>Thiết kế Website</h3>
+                <p>
+                  Landing page, website doanh nghiệp, website bán hàng chuẩn UI/UX, tối ưu SEO và tốc độ.
+                </p>
+                <ul>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Bàn giao nhanh 3-10 ngày</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Responsive đa thiết bị</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Bảo hành kỹ thuật dài hạn</li>
+                </ul>
+              </article>
+
+              <article className="service-card glass-panel fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <div className="bento-icon"><LuBlocks size={30} color="#E15021" /></div>
+                <h3>App Mobile iOS/Android</h3>
+                <p>
+                  Xây dựng ứng dụng React Native/Flutter, tối ưu trải nghiệm, dễ mở rộng theo mô hình kinh doanh.
+                </p>
+                <ul>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Cross-platform hiệu suất cao</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> API và dữ liệu đồng bộ</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Hỗ trợ triển khai store</li>
+                </ul>
+              </article>
+
+              <article className="service-card glass-panel fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <div className="bento-icon"><LuSparkles size={30} color="#E15021" /></div>
+                <h3>AI Chatbot thông minh</h3>
+                <p>
+                  Tự động hóa tư vấn và chăm sóc khách hàng 24/7, tích hợp website, Zalo hoặc các kênh bán hàng.
+                </p>
+                <ul>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Trả lời tự động theo ngữ cảnh</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Hỗ trợ chốt đơn nhanh hơn</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Theo dõi dữ liệu và tối ưu chuyển đổi</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
         {/* Benefits Section */}
         <section id="benefits" className="benefits section-padding">
           <div className="container">
@@ -618,6 +673,85 @@ export default function Home() {
                   </div>
                 </SwiperSlide>
               </Swiper>
+            </div>
+          </div>
+        </section>
+
+        {/* Student Support Section */}
+        <section id="student" className="student section-padding">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Hỗ Trợ <span className="text-gradient">Sinh Viên CNTT</span>
+              </h2>
+              <p className="section-desc">
+                Gói hỗ trợ đồ án linh hoạt theo ngân sách: từ đồ án môn học đến mentor 1-1.
+              </p>
+            </div>
+
+            <div className="student-grid">
+              <div className="student-card glass-panel fade-in-up" style={{ animationDelay: "0.1s" }}>
+                <h3>Đồ án môn học</h3>
+                <p className="student-price">Từ 500.000đ</p>
+                <ul>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Source code có chú thích</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Hỗ trợ chỉnh sửa theo yêu cầu môn</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Hướng dẫn demo và báo cáo</li>
+                </ul>
+              </div>
+
+              <div className="student-card glass-panel fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <h3>Đồ án tốt nghiệp</h3>
+                <p className="student-price">Từ 2.000.000đ</p>
+                <ul>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Full-stack project hoàn chỉnh</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Tài liệu đầy đủ cho bảo vệ</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Đồng hành tới khi nộp</li>
+                </ul>
+              </div>
+
+              <div className="student-card glass-panel fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <h3>Mentor 1-1 & Fix bug</h3>
+                <p className="student-price">Từ 100.000đ</p>
+                <ul>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Review code theo buổi</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Tối ưu hiệu năng và kiến trúc</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Định hướng học tập thực tế</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="faq section-padding dark-bg">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Câu hỏi <span className="text-gradient">Thường Gặp</span>
+              </h2>
+            </div>
+
+            <div className="faq-list fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <details className="faq-item" open>
+                <summary>Thời gian hoàn thành website bao lâu?</summary>
+                <p>Website cơ bản thường từ 3-10 ngày tùy độ phức tạp và số lượng tính năng.</p>
+              </details>
+
+              <details className="faq-item">
+                <summary>Có hỗ trợ sau bàn giao không?</summary>
+                <p>Có. Chúng tôi hỗ trợ kỹ thuật và chỉnh sửa theo phạm vi bảo hành đã cam kết.</p>
+              </details>
+
+              <details className="faq-item">
+                <summary>Có làm app mobile và chatbot AI không?</summary>
+                <p>Có. Chúng tôi triển khai app iOS/Android và chatbot AI tích hợp đa kênh.</p>
+              </details>
+
+              <details className="faq-item">
+                <summary>Giá đồ án sinh viên có linh hoạt không?</summary>
+                <p>Có. Giá được tối ưu theo mức độ yêu cầu để phù hợp ngân sách sinh viên.</p>
+              </details>
             </div>
           </div>
         </section>

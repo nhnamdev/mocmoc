@@ -840,6 +840,112 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(calc(-100% + 500px));
 }
 
+/* Services content section */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.service-card {
+    padding: 1.6rem;
+}
+
+.service-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.55rem;
+}
+
+.service-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.service-card ul {
+    margin-top: 1rem;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.service-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Student support section */
+.student {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f8fc 100%);
+}
+
+.student-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.student-card {
+    padding: 1.6rem;
+}
+
+.student-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.35rem;
+}
+
+.student-price {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--brand-red-1);
+    margin-bottom: 0.9rem;
+}
+
+.student-card ul {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.student-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* FAQ section */
+.faq-list {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.8rem;
+}
+
+.faq-item {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    padding: 0.95rem 1rem;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    font-weight: 700;
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item p {
+    margin-top: 0.65rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
 .project-slide-title {
   padding: 0.75rem 1rem;
   font-size: 0.9rem;
@@ -862,6 +968,11 @@ h1, h2, h3, h4, h5, h6 {
   .project-link:hover .project-img-wrap img {
     transform: translateY(calc(-100% + 400px));
   }
+
+    .services-grid,
+    .student-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Performance optimizations */
