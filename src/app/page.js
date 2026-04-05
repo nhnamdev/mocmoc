@@ -14,7 +14,37 @@ export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [showIntro, setShowIntro] = useState(true);
+  const [introExit, setIntroExit] = useState(false);
   const headerRef = useRef(null);
+
+  useEffect(() => {
+    const ENTER_MS = 900;
+    const HOLD_MS = 1200;
+    const EXIT_MS = 900;
+
+    const exitTimer = setTimeout(() => {
+      setIntroExit(true);
+    }, ENTER_MS + HOLD_MS);
+
+    const hideTimer = setTimeout(() => {
+      setShowIntro(false);
+    }, ENTER_MS + HOLD_MS + EXIT_MS);
+
+    return () => {
+      clearTimeout(exitTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!showIntro) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [showIntro]);
 
   useEffect(() => {
     // Scroll handling
@@ -94,6 +124,27 @@ export default function Home() {
 
   return (
     <>
+      {showIntro && (
+        <div className={`entry-overlay ${introExit ? "is-exit" : ""}`} aria-hidden="true">
+          <div className="entry-overlay-glow"></div>
+          <div className="entry-overlay-content">
+            <div className="entry-logo-wrap">
+              <Image
+                src="/images/logoxoaphong.png"
+                alt="MOCMOC Logo"
+                fill
+                sizes="160px"
+                className="entry-logo"
+                priority
+              />
+            </div>
+            <h1 className="entry-title">MOCMOC DIGITAL</h1>
+            <div className="entry-line"></div>
+            <p className="entry-sub">THIẾT KẾ WEBSITE DOANH NGHIỆP CHUẨN SEO</p>
+          </div>
+        </div>
+      )}
+
       <div className="affiliate-topbar">
         <div className="container affiliate-topbar-inner">
           <p className="affiliate-topbar-text">

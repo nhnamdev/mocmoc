@@ -23,6 +23,178 @@
     --transition-smooth: 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.entry-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 120%, rgba(0, 195, 255, 0.12), transparent 45%),
+        #000000;
+    animation: introSlideIn 1000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.entry-overlay::before,
+.entry-overlay::after {
+    content: "";
+    position: absolute;
+    inset: -18%;
+    pointer-events: none;
+    z-index: 1;
+    background-image: radial-gradient(circle, rgba(0, 210, 255, 0.45) 1.2px, rgba(0, 0, 0, 0) 1.6px);
+    background-size: 16px 16px;
+    filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.2));
+    opacity: 0.45;
+    transform-origin: center;
+}
+
+.entry-overlay::before {
+    transform: perspective(900px) rotateX(66deg) scale(1.25) translateY(8%);
+    animation: particleDriftA 16s linear infinite;
+}
+
+.entry-overlay::after {
+    background-image: radial-gradient(circle, rgba(0, 210, 255, 0.32) 1px, rgba(0, 0, 0, 0) 1.4px);
+    background-size: 22px 22px;
+    opacity: 0.35;
+    transform: perspective(900px) rotateX(68deg) scale(1.55) translateY(14%);
+    animation: particleDriftB 24s linear infinite;
+}
+
+.entry-overlay.is-exit {
+    animation: introSlideOut 1000ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.entry-overlay-glow {
+    position: absolute;
+    inset: -20%;
+    z-index: 0;
+    background: conic-gradient(from 180deg at 50% 50%, rgba(255, 255, 255, 0) 0deg, rgba(255, 255, 255, 0.2) 90deg, rgba(255, 255, 255, 0) 210deg, rgba(255, 255, 255, 0.25) 360deg);
+    filter: blur(60px);
+    opacity: 0.3;
+    animation: glowSpin 7s linear infinite;
+}
+
+.entry-overlay-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+    color: #ffffff;
+    padding: 20px;
+}
+
+.entry-logo-wrap {
+    position: relative;
+    width: 260px;
+    height: 100px;
+}
+
+.entry-logo {
+    object-fit: contain;
+    filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.25));
+}
+
+.entry-title {
+    margin: 0;
+    font-size: clamp(1.8rem, 4.8vw, 3.1rem);
+    letter-spacing: 0.06em;
+    font-weight: 800;
+}
+
+.entry-line {
+    width: min(300px, 70vw);
+    height: 2px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+}
+
+.entry-sub {
+    margin: 0;
+    letter-spacing: 0.35em;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+@keyframes introSlideIn {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes introSlideOut {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes glowSpin {
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.06);
+    }
+}
+
+@keyframes particleDriftA {
+    0% {
+        transform: perspective(900px) rotateX(66deg) scale(1.25) translate3d(0, 8%, 0);
+        background-position: 0 0;
+    }
+
+    50% {
+        transform: perspective(900px) rotateX(66deg) scale(1.28) translate3d(-1.5%, 5%, 0);
+    }
+
+    100% {
+        transform: perspective(900px) rotateX(66deg) scale(1.25) translate3d(-3%, 2%, 0);
+        background-position: 0 -160px;
+    }
+}
+
+@keyframes particleDriftB {
+    0% {
+        transform: perspective(900px) rotateX(68deg) scale(1.55) translate3d(0, 14%, 0);
+        background-position: 0 0;
+    }
+
+    50% {
+        transform: perspective(900px) rotateX(68deg) scale(1.6) translate3d(1%, 10%, 0);
+    }
+
+    100% {
+        transform: perspective(900px) rotateX(68deg) scale(1.55) translate3d(2.2%, 6%, 0);
+        background-position: 0 -220px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .entry-overlay,
+    .entry-overlay.is-exit,
+    .entry-overlay-glow,
+    .entry-overlay::before,
+    .entry-overlay::after {
+        animation-duration: 1ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -67,6 +239,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-gradient {
     background: linear-gradient(90deg, var(--brand-red-1) 0%, var(--brand-red-2) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
@@ -448,6 +621,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .text-gradient-white {
     background: linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0.75) 100%);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
