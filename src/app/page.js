@@ -653,7 +653,7 @@ export default function Home() {
                       <p className="plan-desc">Hoàn hảo cho khởi đầu, giao diện chuẩn SEO với chi phí tối ưu.</p>
                       <div className="plan-price">
                         <span className="old-price">1.990.000 VNĐ</span>
-                        <span className="current-price">799.000 <span className="currency">VNĐ</span></span>
+                        <span className="current-price">1.599.000 <span className="currency">VNĐ</span></span>
                       </div>
                     </div>
                     <ul className="plan-features">
@@ -680,7 +680,7 @@ export default function Home() {
                       <p className="plan-desc">Tối ưu công nghệ, thiết kế độc quyền nâng tầm doanh nghiệp.</p>
                       <div className="plan-price">
                         <span className="old-price">4.990.000 VNĐ</span>
-                        <span className="current-price text-gradient">1.999.000 <span className="currency">VNĐ</span></span>
+                        <span className="current-price text-gradient">2.999.000 <span className="currency">VNĐ</span></span>
                       </div>
                     </div>
                     <ul className="plan-features">
@@ -705,7 +705,7 @@ export default function Home() {
                       <h3 className="plan-name">VIP</h3>
                       <p className="plan-desc">Hệ thống website đa kênh đồ sộ, tích hợp AI mạnh mẽ.</p>
                       <div className="plan-price">
-                        <span className="current-price">20.999.000 <span className="currency">VNĐ</span></span>
+                        <span className="current-price">10.999.000 <span className="currency">VNĐ</span></span>
                       </div>
                     </div>
                     <ul className="plan-features">
