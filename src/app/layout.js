@@ -1,6 +1,7 @@
 import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import DevToolsBlocker from "./components/DevToolsBlocker";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 const outfit = Outfit({ subsets: ["latin"], weight: ["400", "600", "700", "800"], variable: "--font-heading", display: "swap" });
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable}`} suppressHydrationWarning>
+        <DevToolsBlocker />
         {children}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-33R9G7ML1Q" strategy="lazyOnload" />
         <Script id="google-analytics" strategy="lazyOnload">
