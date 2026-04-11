@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useEffect, useRef, useState } from "react";
 import Link from 'next/link';
 import Image from 'next/image';
@@ -183,7 +183,7 @@ export default function Home() {
                   Trang chủ
                 </Link>
               </li>
-              <li>
+              <li className="nav-item-dropdown">
                 <Link
                   href="#services"
                   className={`nav-link ${activeSection === "services" ? "active" : ""
@@ -191,7 +191,45 @@ export default function Home() {
                   onClick={() => setNavOpen(false)}
                 >
                   Dịch vụ
+                  <svg className="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4l4 4 4-4" /></svg>
                 </Link>
+                <ul className="dropdown-menu mega-menu">
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Digital Marketing</h4>
+                    <ul className="dropdown-col-list">
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Dịch vụ Quảng Cáo Google Ads</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Dịch vụ Quảng Cáo Facebook Ads</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Quảng cáo Zalo Ads</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Marketing bất động sản</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Dịch vụ Seo bất động sản</Link></li>
+
+                    </ul>
+                  </li>
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Dịch vụ Seeding</h4>
+                    <ul className="dropdown-col-list">
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Dịch vụ Google Map</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Dịch vụ xác minh Google Map</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Tăng tương tác Facebook</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Tăng tương tác Tiktok</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Tăng tương tác Instagram</Link></li>
+                    </ul>
+                  </li>
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Thiết kế Website</h4>
+                    <ul className="dropdown-col-list">
+                      <li><Link href="/thiet-ke-website-bds" className="dropdown-item">Thiết kế website bất động sản</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Đăng ký tên miền</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Tạo Email doanh nghiệp</Link></li>
+                    </ul>
+                  </li>
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Thiết kế – Media</h4>
+                    <ul className="dropdown-col-list">
+                      <li><a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item">Thiết kế bộ nhận diện thương hiệu</a></li>
+                    </ul>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link
