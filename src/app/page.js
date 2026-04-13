@@ -238,7 +238,7 @@ export default function Home() {
                   <li className="dropdown-col">
                     <h4 className="dropdown-col-title">Thiết kế Website</h4>
                     <ul className="dropdown-col-list">
-                      <li><Link href="/thiet-ke-website-bds" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Thiết kế website bất động sản</Link></li>
+                      <li><Link href="https://bds.mocmoc.id.vn" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Thiết kế website bất động sản</Link></li>
                       <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Đăng ký tên miền</Link></li>
                       <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Tạo Email doanh nghiệp</Link></li>
                     </ul>
