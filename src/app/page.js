@@ -186,16 +186,7 @@ export default function Home() {
           </Link>
           <nav className={`nav ${navOpen ? "nav-open" : ""}`}>
             <ul className="nav-list">
-              <li>
-                <Link
-                  href="#home"
-                  className={`nav-link ${activeSection === "home" ? "active" : ""
-                    }`}
-                  onClick={() => setNavOpen(false)}
-                >
-                  Trang chủ
-                </Link>
-              </li>
+
               <li className={`nav-item-dropdown ${dropdownOpen ? "dropdown-open" : ""}`}>
                 <Link
                   href="#services"
@@ -253,24 +244,17 @@ export default function Home() {
               </li>
               <li>
                 <Link
-                  href="#benefits"
-                  className={`nav-link ${activeSection === "benefits" ? "active" : ""
+                  href="https://bds.mocmoc.id.vn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`nav-link ${activeSection === "pricing" ? "active" : ""
                     }`}
-                  onClick={() => setNavOpen(false)}
+
                 >
-                  Lợi ích
+                  Thiết kế website bất động sản
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#process"
-                  className={`nav-link ${activeSection === "process" ? "active" : ""
-                    }`}
-                  onClick={() => setNavOpen(false)}
-                >
-                  Quy trình
-                </Link>
-              </li>
+
               <li>
                 <Link
                   href="#pricing"
