@@ -785,7 +785,7 @@ export default function Home() {
                       <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói PRO</li>
                     </ul>
                     <div className="pricing-footer">
-                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Website Doanh Nghiệp</a>
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói VIP</a>
                     </div>
                   </div>
                 </SwiperSlide>
