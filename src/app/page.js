@@ -642,14 +642,14 @@ export default function Home() {
                   { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
                   { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
                   { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
-
                   { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', blank: true },
                   { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', blank: true },
                   { id: 8, title: 'WEB SẮC ĐẸP 24H', link: '#', image: '/images/sacdep24h.png', blank: true },
                   { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', blank: true },
                   { id: 10, title: 'WEB BÁN COFFEE', link: '#', image: '/images/cafengon.png', blank: true },
-
-
+                  { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', blank: true },
+                  { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', blank: true },
+                  { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', blank: true },
                 ].map((item) => (
                   <SwiperSlide key={item.id} className="project-slide">
                     <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
@@ -698,7 +698,7 @@ export default function Home() {
                       <p className="plan-desc">Hoàn hảo cho khởi đầu, giao diện chuẩn SEO với chi phí tối ưu.</p>
                       <div className="plan-price">
                         <span className="old-price">1.990.000 VNĐ</span>
-                        <span className="current-price">1.500.000 <span className="currency">VNĐ</span></span>
+                        <span className="current-price">1.499.000 <span className="currency">VNĐ</span></span>
                       </div>
                     </div>
                     <ul className="plan-features">
