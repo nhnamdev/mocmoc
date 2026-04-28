@@ -5,10 +5,11 @@ import Image from 'next/image';
 import { LuRocket, LuTarget, LuShieldCheck, LuSparkles, LuSettings, LuBlocks, LuCheck, LuCircleCheck } from "react-icons/lu";
 import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Pagination, Autoplay, EffectCoverflow, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
@@ -18,6 +19,8 @@ export default function Home() {
   const [introExit, setIntroExit] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const headerRef = useRef(null);
+  const testiPrevRef = useRef(null);
+  const testiNextRef = useRef(null);
 
   useEffect(() => {
     const ENTER_MS = 900;
@@ -760,6 +763,120 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Testimonial Section */}
+        <section id="testimonials" className="testimonials section-padding">
+          <div className="container">
+            <div className="testi-top">
+              <div className="section-header fade-in-up">
+                <p className="section-pre-label">Khách Hàng Nói Gì</p>
+                <h2 className="section-title">
+                  Khách hàng chia sẻ<br />
+                  <span className="text-gradient">Về Chúng Tôi</span>
+                </h2>
+              </div>
+              <div className="testi-nav-wrap fade-in-up">
+                <button ref={testiPrevRef} className="testi-nav-btn" aria-label="Previous">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <button ref={testiNextRef} className="testi-nav-btn" aria-label="Next">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={24}
+                loop={true}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                navigation={{ prevEl: testiPrevRef.current, nextEl: testiNextRef.current }}
+                onSwiper={(swiper) => {
+                  swiper.params.navigation.prevEl = testiPrevRef.current;
+                  swiper.params.navigation.nextEl = testiNextRef.current;
+                  swiper.navigation.init();
+                  swiper.navigation.update();
+                }}
+                breakpoints={{
+                  768: { slidesPerView: 1.5 },
+                  1024: { slidesPerView: 2 },
+                }}
+                modules={[Autoplay, Navigation]}
+                className="testi-swiper"
+              >
+                {[
+                  {
+                    id: 1,
+                    text: 'Trước đây tôi từng làm việc với vài đơn vị, nhưng chưa thật sự hài lòng vì họ chỉ chú trọng giao diện mà bỏ qua chiến lược thương hiệu. Đến khi hợp tác với đội ngũ này, tôi mới hiểu thế nào là giải pháp xây dựng website chuyên sâu. Họ không chỉ làm đẹp mà còn hỗ trợ nội dung, tối ưu SEO, và đồng hành xây dựng thương hiệu. Rất đáng đầu tư.',
+                    name: 'Anh Trường',
+                    role: 'Giám Đốc - the1987.vn',
+                    avatar: 'https://tbay.vn/wp-content/uploads/2021/05/truong.jpg',
+                    logo: 'https://the1987.vn/wp-content/uploads/2020/03/new-logo2.png',
+                    logoLink: 'https://the1987.vn',
+                  },
+                  {
+                    id: 2,
+                    text: 'Ban đầu tôi nghĩ chỉ cần web đẹp là được, nhưng các đối tác trước đây không mang lại hiệu quả như mong đợi. Sau khi làm việc với đội ngũ này, tôi mới thấy rõ giá trị từ dịch vụ phát triển website toàn diện – từ thiết kế, nội dung, đến SEO và định hướng thương hiệu. Kết quả là trang web không chỉ vận hành tốt mà còn mang lại nhiều khách hàng hơn.',
+                    name: 'Chị Thảo',
+                    role: 'Giám Đốc - Everonthuduc.com',
+                    avatar: 'https://tbay.vn/wp-content/uploads/2021/05/thao.jpg',
+                    logo: 'https://everonthuduc.com/wp-content/uploads/2020/09/new-logo.png',
+                    logoLink: 'https://everonthuduc.com',
+                  },
+                  {
+                    id: 3,
+                    text: 'Là một doanh nghiệp mới, chúng tôi cần nền tảng website vừa đẹp vừa sẵn sàng hoạt động ngay. May mắn là đã tìm được một đội ngũ biết lắng nghe, thấu hiểu và tư vấn tận tình. Họ hỗ trợ chúng tôi xuyên suốt từ tư vấn ý tưởng đến hoàn thiện. Dịch vụ bảo hành và hỗ trợ sau bàn giao cũng rất tốt.',
+                    name: 'Anh Phát',
+                    role: 'Giám Đốc - congminhland.com',
+                    avatar: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/phat.png',
+                    logo: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/congminhland-logo.png',
+                    logoLink: 'https://congminhland.com',
+                  },
+                  {
+                    id: 4,
+                    text: 'Trang web cũ đã lỗi thời, tôi cần một nền tảng mới hiện đại và hiệu quả hơn. Tôi chọn đơn vị này vì uy tín và sự đa dạng trong các gói xây dựng giao diện web. Họ không chỉ mang đến thiết kế ấn tượng mà còn tích hợp nhiều tính năng thân thiện với người dùng. Doanh thu cũng tăng rõ rệt sau khi triển khai trang web mới.',
+                    name: 'Anh Tùng',
+                    role: 'Giám Đốc - mak.vn',
+                    avatar: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/anh-tung.png',
+                    logo: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/LOGO-MAK.png',
+                    logoLink: 'https://mak.vn',
+                  },
+                  {
+                    id: 5,
+                    text: 'Với đặc thù ngành nghề, chúng tôi cần một trang web vừa phản ánh được bản sắc riêng vừa đáp ứng yếu tố chuyên nghiệp. Đội ngũ đã đồng hành rất sát sao, nghiên cứu ngành kỹ lưỡng để đưa ra giải pháp phù hợp. Sự tận tâm và hiểu biết sâu sắc đã giúp chúng tôi có được một sản phẩm như mong đợi.',
+                    name: 'Anh Hoàng',
+                    role: 'Giám Đốc - grehebe.com',
+                    avatar: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/huy-hoang.png',
+                    logo: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/wweb-bl-01-01.png',
+                    logoLink: 'https://grehebe.com',
+                  },
+                ].map((item) => (
+                  <SwiperSlide key={item.id} className="testi-slide">
+                    <div className="testi-card glass-panel">
+                      <div className="testi-quote">
+                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><path d="M0 28V17.6C0 12.267 1.333 7.933 4 4.6 6.667 1.533 10.533 0 15.6 0v4.8c-2.667.267-4.8 1.4-6.4 3.4-1.6 1.867-2.4 4.267-2.4 7.2H12V28H0zm20 0V17.6c0-5.333 1.333-9.667 4-13C26.667 1.533 30.533 0 35.6 0v4.8c-2.667.267-4.8 1.4-6.4 3.4-1.6 1.867-2.4 4.267-2.4 7.2H32V28H20z" fill="var(--brand-red-1)" opacity="0.15"/></svg>
+                      </div>
+                      <p className="testi-text">{item.text}</p>
+                      <div className="testi-footer">
+                        <div className="testi-author">
+                          <img src={item.avatar} alt={item.name} className="testi-avatar" loading="lazy" />
+                          <div>
+                            <h4 className="testi-name">{item.name}</h4>
+                            <span className="testi-role">{item.role}</span>
+                          </div>
+                        </div>
+                        <a href={item.logoLink} target="_blank" rel="noopener noreferrer" className="testi-logo-link">
+                          <img src={item.logo} alt={item.name} className="testi-company-logo" loading="lazy" />
+                        </a>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
         {/* Pricing Section */}
         <section id="pricing" className="pricing section-padding" style={{ overflow: 'hidden' }}>
           <div className="container">
@@ -986,6 +1103,19 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {/* Footer */}
+      <a
+        href="https://zalo.me/0858200725"
+        target="_blank"
+        rel="noreferrer"
+        className="floating-zalo-btn"
+        aria-label="Liên hệ qua Zalo"
+      >
+        <span className="floating-zalo-ripple"></span>
+        <span className="floating-zalo-ripple floating-zalo-ripple--2"></span>
+        <img src="/images/logo-zalo.png" alt="Zalo" width="90" height="90" style={{ objectFit: 'contain', borderRadius: '50%' }} />
+      </a>
 
       {/* Footer */}
       <footer className="footer border-t">

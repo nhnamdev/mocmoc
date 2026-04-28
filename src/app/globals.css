@@ -1497,6 +1497,73 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ============================================================
+   Floating Zalo Button
+   ============================================================ */
+.floating-zalo-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    text-decoration: none;
+    animation: zalo-shake 2.4s ease-in-out infinite;
+}
+
+.floating-zalo-btn:hover {
+    animation: none;
+    transform: scale(1.12);
+    transition: transform 0.2s ease;
+}
+
+/* Vòng loang */
+.floating-zalo-ripple {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: rgba(0, 104, 255, 0.4);
+    animation: zalo-ripple 2s ease-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.floating-zalo-ripple--2 {
+    background: rgba(0, 104, 255, 0.3);
+    animation-delay: 0.7s;
+}
+
+@keyframes zalo-ripple {
+    0%   { transform: scale(1);   opacity: 0.8; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes zalo-shake {
+    0%, 100%       { transform: rotate(0deg) scale(1); }
+    10%            { transform: rotate(-12deg) scale(1.05); }
+    20%            { transform: rotate(12deg) scale(1.05); }
+    30%            { transform: rotate(-10deg) scale(1.03); }
+    40%            { transform: rotate(10deg) scale(1.03); }
+    50%            { transform: rotate(-6deg) scale(1.01); }
+    60%            { transform: rotate(6deg) scale(1.01); }
+    70%            { transform: rotate(0deg) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .floating-zalo-btn {
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+    }
+}
+
 /* Mobile dropdown */
 @media (max-width: 1024px) {
     /* Vô hiệu hóa hover trên mobile */
@@ -1564,5 +1631,151 @@ h1, h2, h3, h4, h5, h6 {
     .nav-item-dropdown .nav-link {
         pointer-events: auto;
         cursor: pointer;
+    }
+}
+
+/* ============================================================
+   Testimonials Section
+   ============================================================ */
+.testimonials {
+    background: var(--bg-main);
+    overflow: hidden;
+}
+
+.testi-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.testi-nav-wrap {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+}
+
+.testi-nav-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(0,0,0,0.1);
+    background: #fff;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.testi-nav-btn:hover {
+    background: var(--brand-red-1);
+    border-color: var(--brand-red-1);
+    color: #fff;
+    transform: scale(1.08);
+}
+
+.testi-swiper {
+    overflow: visible !important;
+}
+
+.testi-slide {
+    height: auto;
+}
+
+.testi-card {
+    height: 100%;
+    padding: 2rem;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.testi-card:hover {
+    box-shadow: 0 12px 40px rgba(58, 123, 213, 0.1);
+    transform: translateY(-4px);
+}
+
+.testi-quote {
+    line-height: 0;
+}
+
+.testi-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    flex: 1;
+}
+
+.testi-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(0,0,0,0.07);
+}
+
+.testi-author {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.testi-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(225, 80, 33, 0.2);
+    flex-shrink: 0;
+}
+
+.testi-name {
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.15rem;
+}
+
+.testi-role {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.testi-logo-link {
+    flex-shrink: 0;
+}
+
+.testi-company-logo {
+    width: 72px;
+    height: auto;
+    object-fit: contain;
+    filter: grayscale(1);
+    opacity: 0.6;
+    transition: filter var(--transition-fast), opacity var(--transition-fast);
+}
+
+.testi-company-logo:hover {
+    filter: grayscale(0);
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .testi-top {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .testi-card {
+        padding: 1.5rem;
     }
 }
