@@ -665,6 +665,101 @@ export default function Home() {
           </div>
         </section>
 
+        {/* AI Products Section */}
+        <section id="ai-products" className="ai-products section-padding">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <p className="section-pre-label">Sản Phẩm AI Đột Phá</p>
+              <h2 className="section-title">
+                Công Nghệ AI<br />
+                <span className="text-gradient">Của MOCMOC</span>
+              </h2>
+            </div>
+
+            <div className="ai-products-grid">
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.1s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="https://web366ai.com/" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/plugin-viet-bai-ai-content.png"
+                      alt="AI Writter"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="https://web366ai.com/" target="_blank" rel="noopener noreferrer" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="https://web366ai.com/" target="_blank" rel="noopener noreferrer"> AI Writter</a></h3>
+                  <span>Sản phẩm tạo nội dung tự động.</span>
+                </div>
+              </div>
+
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="https://website366.com/nghe-training-chatbot-la-gi-tim-hieu-nghe-moi-noi-cung-xu-huong-ai-2025/" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/chat-bot-ai-doanh-nghiep.png"
+                      alt="Chatbot AI doanh nghiệp"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="https://website366.com/nghe-training-chatbot-la-gi-tim-hieu-nghe-moi-noi-cung-xu-huong-ai-2025/" target="_blank" rel="noopener noreferrer" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="https://website366.com/nghe-training-chatbot-la-gi-tim-hieu-nghe-moi-noi-cung-xu-huong-ai-2025/" target="_blank" rel="noopener noreferrer">Chatbot AI</a></h3>
+                  <span>CHATBOT thông minh training cho từng Doanh Nghiệp</span>
+                </div>
+              </div>
+
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.3s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="#">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/email-marketing.png"
+                      alt="Email Marketing AI"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="#" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="#">Email Marketing AI</a></h3>
+                  <span>Tự động hóa trả lời email</span>
+                </div>
+              </div>
+
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.4s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="#">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/e-commerce-analytics-AI.png"
+                      alt="E-commerce Analytics AI"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="#" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="#">E-commerce Shop AI</a></h3>
+                  <span>Phân tích bán hàng</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Pricing Section */}
         <section id="pricing" className="pricing section-padding" style={{ overflow: 'hidden' }}>
           <div className="container">
