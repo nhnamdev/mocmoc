@@ -374,6 +374,200 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Projects / Slider Section */}
+        <section id="projects" className="projects section-padding" style={{ overflow: 'hidden' }}>
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Dự án <span className="text-gradient">Nổi Bật</span>
+              </h2>
+              <p className="section-desc">
+                Cùng khám phá những sản phẩm công nghệ tuyệt vời mà chúng tôi đã thiết kế và triển khai thành công.
+              </p>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                initialSlide={1}
+                loop={true}
+                coverflowEffect={{
+                  rotate: 20,
+                  stretch: 0,
+                  depth: 200,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                modules={[EffectCoverflow, Pagination, Autoplay]}
+                className="project-swiper"
+                style={{ paddingBottom: '3rem' }}
+              >
+                {[
+                  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', blank: true },
+                  { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
+                  { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
+                  { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
+                  { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
+                  { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', blank: true },
+                  { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', blank: true },
+                  { id: 8, title: 'WEB SẮC ĐẸP 24H', link: '#', image: '/images/sacdep24h.png', blank: true },
+                  { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', blank: true },
+                  { id: 10, title: 'WEB BÁN COFFEE', link: '#', image: '/images/cafengon.png', blank: true },
+                  { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', blank: true },
+                  { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', blank: true },
+                  { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', blank: true },
+                ].map((item) => (
+                  <SwiperSlide key={item.id} className="project-slide">
+                    <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
+                      <div className="project-img-wrap">
+                        <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+                      </div>
+                      <p className="project-slide-title">{item.title}</p>
+                    </a>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="pricing section-padding" style={{ overflow: 'hidden' }}>
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Bảng Giá <span className="text-gradient">Thiết Kế Trọn Gói</span>
+              </h2>
+              <p className="section-desc">
+                Chất lượng cao nhất - Chi phí phù hợp nhất.
+              </p>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                initialSlide={2}
+                coverflowEffect={{ rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                modules={[EffectCoverflow, Pagination]}
+                className="pricing-swiper"
+                style={{ paddingBottom: '3rem' }}
+              >
+                {/* Basic */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">BASIC</h3>
+                      <p className="plan-desc">Hoàn hảo cho khởi đầu, giao diện chuẩn SEO với chi phí tối ưu.</p>
+                      <div className="plan-price">
+                        <span className="old-price">1.990.000 VNĐ</span>
+                        <span className="current-price">1.499.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 1-3 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting .app</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Template tối ưu chuyển đổi</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Cấu trúc chuẩn SEO</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Bảo mật SSL</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Nhúng Google Search Console, Google Analytics</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Basic</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* Business */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">BUSINESS</h3>
+                      <p className="plan-desc">Tối ưu SEO, thiết kế đẹp nâng tầm doanh nghiệp.</p>
+                      <div className="plan-price">
+                        <span className="old-price">4.990.000 VNĐ</span>
+                        <span className="current-price">2.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 6-10 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện theo mẫu tự chọn</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting 1 năm</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Fanpage 2000 Follows</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Trang web chuẩn SEO 3 - 5 Trang</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Basic</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Business</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* VIP */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel highlight">
+                    <div className="popular-badge">PHỔ BIẾN NHẤT</div>
+                    <div className="pricing-header">
+                      <h3 className="plan-name">PRO</h3>
+                      <p className="plan-desc">Hệ thống website chuyên nghiệp, tối ưu trải nghiệm người dùng.</p>
+                      <div className="plan-price">
+                        <span className="current-price">4.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện độc quyền sáng tạo</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đồng bộ hệ thống CRM đa kênh</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Business</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-primary btn-full pulse">Chọn Gói PRO</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* Website Doanh Nghiệp */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">VIP</h3>
+                      <p className="plan-desc">Hệ thống website đa kênh đồ sộ, tích hợp AI mạnh mẽ.</p>
+                      <div className="plan-price">
+                        <span className="current-price">10.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đồng bộ hệ thống CRM </li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp ChatGPT / AI</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Quản lý bán hàng nội bộ</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói PRO</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói VIP</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
         {/* Services Section */}
         <section id="services" className="services section-padding dark-bg">
           <div className="container">
@@ -603,71 +797,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Projects / Slider Section */}
-        <section id="projects" className="projects section-padding" style={{ overflow: 'hidden' }}>
-          <div className="container">
-            <div className="section-header text-center fade-in-up">
-              <h2 className="section-title">
-                Dự án <span className="text-gradient">Nổi Bật</span>
-              </h2>
-              <p className="section-desc">
-                Cùng khám phá những sản phẩm công nghệ tuyệt vời mà chúng tôi đã thiết kế và triển khai thành công.
-              </p>
-            </div>
-
-            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <Swiper
-                effect={'coverflow'}
-                grabCursor={true}
-                centeredSlides={true}
-                slidesPerView={'auto'}
-                initialSlide={1}
-                loop={true}
-                coverflowEffect={{
-                  rotate: 20,
-                  stretch: 0,
-                  depth: 200,
-                  modifier: 1,
-                  slideShadows: true,
-                }}
-                autoplay={{
-                  delay: 3000,
-                  disableOnInteraction: false,
-                }}
-                pagination={{ clickable: true, dynamicBullets: true }}
-                modules={[EffectCoverflow, Pagination, Autoplay]}
-                className="project-swiper"
-                style={{ paddingBottom: '3rem' }}
-              >
-                {[
-                  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', blank: true },
-                  { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
-                  { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
-                  { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
-                  { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
-                  { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', blank: true },
-                  { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', blank: true },
-                  { id: 8, title: 'WEB SẮC ĐẸP 24H', link: '#', image: '/images/sacdep24h.png', blank: true },
-                  { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', blank: true },
-                  { id: 10, title: 'WEB BÁN COFFEE', link: '#', image: '/images/cafengon.png', blank: true },
-                  { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', blank: true },
-                  { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', blank: true },
-                  { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', blank: true },
-                ].map((item) => (
-                  <SwiperSlide key={item.id} className="project-slide">
-                    <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
-                      <div className="project-img-wrap">
-                        <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
-                      </div>
-                      <p className="project-slide-title">{item.title}</p>
-                    </a>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-          </div>
-        </section>
-
         {/* AI Products Section */}
         <section id="ai-products" className="ai-products section-padding">
           <div className="container">
@@ -872,135 +1001,6 @@ export default function Home() {
                     </div>
                   </SwiperSlide>
                 ))}
-              </Swiper>
-            </div>
-          </div>
-        </section>
-
-        {/* Pricing Section */}
-        <section id="pricing" className="pricing section-padding" style={{ overflow: 'hidden' }}>
-          <div className="container">
-            <div className="section-header text-center fade-in-up">
-              <h2 className="section-title">
-                Bảng Giá <span className="text-gradient">Thiết Kế Trọn Gói</span>
-              </h2>
-              <p className="section-desc">
-                Chất lượng cao nhất - Chi phí phù hợp nhất.
-              </p>
-            </div>
-
-            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
-              <Swiper
-                effect={'coverflow'}
-                grabCursor={true}
-                centeredSlides={true}
-                slidesPerView={'auto'}
-                initialSlide={2}
-                coverflowEffect={{ rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
-                pagination={{ clickable: true, dynamicBullets: true }}
-                modules={[EffectCoverflow, Pagination]}
-                className="pricing-swiper"
-                style={{ paddingBottom: '3rem' }}
-              >
-                {/* Basic */}
-                <SwiperSlide className="pricing-swiper-slide">
-                  <div className="pricing-card glass-panel">
-                    <div className="pricing-header">
-                      <h3 className="plan-name">BASIC</h3>
-                      <p className="plan-desc">Hoàn hảo cho khởi đầu, giao diện chuẩn SEO với chi phí tối ưu.</p>
-                      <div className="plan-price">
-                        <span className="old-price">1.990.000 VNĐ</span>
-                        <span className="current-price">1.499.000 <span className="currency">VNĐ</span></span>
-                      </div>
-                    </div>
-                    <ul className="plan-features">
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 1-3 ngày hoàn thành</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting .app</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Template tối ưu chuyển đổi</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Cấu trúc chuẩn SEO</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Bảo mật SSL</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Nhúng Google Search Console, Google Analytics</li>
-                    </ul>
-                    <div className="pricing-footer">
-                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Basic</a>
-                    </div>
-                  </div>
-                </SwiperSlide>
-
-                {/* Business */}
-                <SwiperSlide className="pricing-swiper-slide">
-                  <div className="pricing-card glass-panel">
-                    <div className="pricing-header">
-                      <h3 className="plan-name">BUSINESS</h3>
-                      <p className="plan-desc">Tối ưu SEO, thiết kế đẹp nâng tầm doanh nghiệp.</p>
-                      <div className="plan-price">
-                        <span className="old-price">4.990.000 VNĐ</span>
-                        <span className="current-price">2.999.000 <span className="currency">VNĐ</span></span>
-                      </div>
-                    </div>
-                    <ul className="plan-features">
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 6-10 ngày hoàn thành</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện theo mẫu tự chọn</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting 1 năm</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Fanpage 2000 Follows</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Trang web chuẩn SEO 3 - 5 Trang</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Basic</li>
-                    </ul>
-                    <div className="pricing-footer">
-                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Business</a>
-                    </div>
-                  </div>
-                </SwiperSlide>
-
-                {/* VIP */}
-                <SwiperSlide className="pricing-swiper-slide">
-                  <div className="pricing-card glass-panel highlight">
-                    <div className="popular-badge">PHỔ BIẾN NHẤT</div>
-                    <div className="pricing-header">
-                      <h3 className="plan-name">PRO</h3>
-                      <p className="plan-desc">Hệ thống website chuyên nghiệp, tối ưu trải nghiệm người dùng.</p>
-                      <div className="plan-price">
-                        <span className="current-price">4.999.000 <span className="currency">VNĐ</span></span>
-                      </div>
-                    </div>
-                    <ul className="plan-features">
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện độc quyền sáng tạo</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đồng bộ hệ thống CRM đa kênh</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Business</li>
-                    </ul>
-                    <div className="pricing-footer">
-                      <a href="#consult" className="btn-primary btn-full pulse">Chọn Gói PRO</a>
-                    </div>
-                  </div>
-                </SwiperSlide>
-
-                {/* Website Doanh Nghiệp */}
-                <SwiperSlide className="pricing-swiper-slide">
-                  <div className="pricing-card glass-panel">
-                    <div className="pricing-header">
-                      <h3 className="plan-name">VIP</h3>
-                      <p className="plan-desc">Hệ thống website đa kênh đồ sộ, tích hợp AI mạnh mẽ.</p>
-                      <div className="plan-price">
-                        <span className="current-price">10.999.000 <span className="currency">VNĐ</span></span>
-                      </div>
-                    </div>
-                    <ul className="plan-features">
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đồng bộ hệ thống CRM </li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp ChatGPT / AI</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Quản lý bán hàng nội bộ</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
-                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói PRO</li>
-                    </ul>
-                    <div className="pricing-footer">
-                      <a href="#consult" className="btn-outline btn-full">Chọn Gói VIP</a>
-                    </div>
-                  </div>
-                </SwiperSlide>
               </Swiper>
             </div>
           </div>
