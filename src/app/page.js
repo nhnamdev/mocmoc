@@ -19,6 +19,7 @@ export default function Home() {
   const [introExit, setIntroExit] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const headerRef = useRef(null);
+  const swiperRef = useRef(null);
   const testiPrevRef = useRef(null);
   const testiNextRef = useRef(null);
 
@@ -409,6 +410,7 @@ export default function Home() {
                 modules={[EffectCoverflow, Pagination, Autoplay]}
                 className="project-swiper"
                 style={{ paddingBottom: '3rem' }}
+                onSwiper={(swiper) => { swiperRef.current = swiper; }}
               >
                 {[
                   { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', blank: true },
@@ -424,14 +426,23 @@ export default function Home() {
                   { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', blank: true },
                   { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', blank: true },
                   { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', blank: true },
-                ].map((item) => (
+                ].map((item, index) => (
                   <SwiperSlide key={item.id} className="project-slide">
-                    <a href={item.link} target={item.blank ? "_blank" : "_self"} rel={item.blank ? "noopener noreferrer" : ""} className="project-link">
+                    <div 
+                      className="project-link" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (swiperRef.current) {
+                          swiperRef.current.slideToLoop(index);
+                        }
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div className="project-img-wrap">
                         <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
                       </div>
                       <p className="project-slide-title">{item.title}</p>
-                    </a>
+                    </div>
                   </SwiperSlide>
                 ))}
               </Swiper>
