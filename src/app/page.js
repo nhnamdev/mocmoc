@@ -1,7 +1,6 @@
 ﻿"use client";
 import { useEffect, useRef, useState } from "react";
 import Link from 'next/link';
-import Image from 'next/image';
 import { LuRocket, LuTarget, LuShieldCheck, LuSparkles, LuSettings, LuBlocks, LuCheck, LuCircleCheck } from "react-icons/lu";
 import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,6 +9,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
+
+const BRAND_LOGO_SRC = "/images/logoxoaphong.png?v=20260515";
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
@@ -146,13 +147,10 @@ export default function Home() {
           <div className="entry-overlay-glow"></div>
           <div className="entry-overlay-content">
             <div className="entry-logo-wrap">
-              <Image
-                src="/images/logoxoaphong.png"
+              <img
+                src={BRAND_LOGO_SRC}
                 alt="MOCMOC Logo"
-                fill
-                sizes="160px"
                 className="entry-logo"
-                priority
               />
             </div>
             <h1 className="entry-title">MOCMOC DIGITAL</h1>
@@ -183,7 +181,7 @@ export default function Home() {
         <div className="container header-container">
           <Link href="#" className="logo">
             <img
-              src="/images/logoxoaphong.png"
+              src={BRAND_LOGO_SRC}
               alt="MOCMOC Logo"
               style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto', height: '50px' }}
             />
@@ -1160,7 +1158,7 @@ export default function Home() {
             <div className="footer-brand">
               <Link href="#" className="logo">
                 <img
-                  src="/images/logoxoaphong.png"
+                  src={BRAND_LOGO_SRC}
                   alt="MOCMOC Logo"
                   style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto', height: '50px' }}
                 />
