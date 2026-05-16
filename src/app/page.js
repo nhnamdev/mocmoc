@@ -1,5 +1,6 @@
 ﻿"use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import Link from 'next/link';
 import { LuRocket, LuTarget, LuShieldCheck, LuSparkles, LuSettings, LuBlocks, LuCheck, LuCircleCheck } from "react-icons/lu";
 import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
@@ -11,6 +12,23 @@ import 'swiper/css/effect-coverflow';
 import 'swiper/css/navigation';
 
 const BRAND_LOGO_SRC = "/images/logoxoaphong.png?v=20260515";
+const PROJECT_IMAGE_QUALITY = 100;
+const PROJECT_IMAGE_SIZES = "(max-width: 768px) 82vw, 350px";
+const PROJECTS = [
+  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', width: 1863, height: 8954, blank: true },
+  { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', width: 1863, height: 6410, blank: true },
+  { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', width: 1863, height: 12259, blank: true },
+  { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', width: 1863, height: 8766, blank: true },
+  { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', width: 1863, height: 11840, blank: true },
+  { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', width: 1875, height: 7056, blank: true },
+  { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', width: 1875, height: 4377, blank: true },
+  { id: 8, title: 'WEB SẮC ĐẸP 24H', link: '#', image: '/images/sacdep24h.png', width: 1875, height: 9194, blank: true },
+  { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', width: 1875, height: 6241, blank: true },
+  { id: 10, title: 'WEB BÁN COFFEE', link: '#', image: '/images/cafengon.png', width: 1875, height: 6034, blank: true },
+  { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', width: 1863, height: 6909, blank: true },
+  { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', width: 1863, height: 6323, blank: true },
+  { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', width: 1864, height: 4233, blank: true },
+];
 
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false);
@@ -410,21 +428,7 @@ export default function Home() {
                 style={{ paddingBottom: '3rem' }}
                 onSwiper={(swiper) => { swiperRef.current = swiper; }}
               >
-                {[
-                  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', blank: true },
-                  { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', blank: true },
-                  { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', blank: true },
-                  { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', blank: true },
-                  { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', blank: true },
-                  { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', blank: true },
-                  { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', blank: true },
-                  { id: 8, title: 'WEB SẮC ĐẸP 24H', link: '#', image: '/images/sacdep24h.png', blank: true },
-                  { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', blank: true },
-                  { id: 10, title: 'WEB BÁN COFFEE', link: '#', image: '/images/cafengon.png', blank: true },
-                  { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', blank: true },
-                  { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', blank: true },
-                  { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', blank: true },
-                ].map((item, index) => (
+                {PROJECTS.map((item, index) => (
                   <SwiperSlide key={item.id} className="project-slide">
                     <div 
                       className="project-link" 
@@ -437,7 +441,16 @@ export default function Home() {
                       style={{ cursor: 'pointer' }}
                     >
                       <div className="project-img-wrap">
-                        <img src={item.image} alt={item.title} loading="lazy" decoding="async" />
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={item.width}
+                          height={item.height}
+                          quality={PROJECT_IMAGE_QUALITY}
+                          sizes={PROJECT_IMAGE_SIZES}
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                       <p className="project-slide-title">{item.title}</p>
                     </div>
@@ -953,7 +966,7 @@ export default function Home() {
                 spaceBetween={24}
                 loop={true}
                 autoplay={{ delay: 5000, disableOnInteraction: false }}
-                navigation={{ prevEl: testiPrevRef.current, nextEl: testiNextRef.current }}
+                navigation={true}
                 onSwiper={(swiper) => {
                   swiper.params.navigation.prevEl = testiPrevRef.current;
                   swiper.params.navigation.nextEl = testiNextRef.current;
