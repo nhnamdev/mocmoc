@@ -1,0 +1,1220 @@
+﻿"use client";
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import Link from 'next/link';
+import { LuRocket, LuTarget, LuShieldCheck, LuSparkles, LuSettings, LuBlocks, LuCheck, LuCircleCheck } from "react-icons/lu";
+import { FaFacebookF, FaTiktok, FaYoutube } from "react-icons/fa6";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay, EffectCoverflow, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow';
+import 'swiper/css/navigation';
+
+const BRAND_LOGO_SRC = "/images/logoxoaphong.png?v=20260515";
+const PROJECT_IMAGE_QUALITY = 100;
+const PROJECT_IMAGE_SIZES = "(max-width: 768px) 82vw, 350px";
+const PROJECTS = [
+  { id: 1, title: 'WEB DỊCH VỤ VẬN CHUYỂN', link: 'https://dichvuchuyennha24h.vercel.app/', image: '/images/dichvuvanchuyen.png', width: 1863, height: 8954, blank: true },
+  { id: 2, title: 'WEB GYM & FITNESS', link: 'https://ignitefitness-five.vercel.app', image: '/images/gym.png', width: 1863, height: 6410, blank: true },
+  { id: 3, title: 'WEB MỸ PHẨM', link: 'https://beauty-blendz.vercel.app/', image: '/images/mypham.png', width: 1863, height: 12259, blank: true },
+  { id: 4, title: 'WEB BÁN GIÀY', link: 'https://zest-foot.vercel.app/', image: '/images/bangiay.png', width: 1863, height: 8766, blank: true },
+  { id: 5, title: 'WEB BẤT ĐỘNG SẢN', link: 'https://kingdombds.vercel.app/', image: '/images/bds.png', width: 1863, height: 11840, blank: true },
+  { id: 6, title: 'WEB ĐẶT ĐỒ ĂN', link: 'https://food-pizzan.vercel.app/', image: '/images/food.png', width: 1875, height: 7056, blank: true },
+  { id: 7, title: 'WEB NỘI THẤT BẾP ĂN', link: 'https://pan-pot-a5ns.vercel.app/', image: '/images/dodungvanphong.png', width: 1875, height: 4377, blank: true },
+  { id: 8, title: 'WEB SẮC ĐẸP 24H', link: '#', image: '/images/sacdep24h.png', width: 1875, height: 9194, blank: true },
+  { id: 9, title: 'WEB ĐẶT BÀN NHÀ HÀNG', link: 'https://restaurant-brown-one.vercel.app/', image: '/images/monarestaurant.png', width: 1875, height: 6241, blank: true },
+  { id: 10, title: 'WEB BÁN COFFEE', link: '#', image: '/images/cafengon.png', width: 1875, height: 6034, blank: true },
+  { id: 11, title: 'WEB BẤT ĐỘNG SẢN', link: '#', image: '/images/monahill.png', width: 1863, height: 6909, blank: true },
+  { id: 12, title: 'WEB XÂY DỰNG ', link: '#', image: '/images/sigma.png', width: 1863, height: 6323, blank: true },
+  { id: 13, title: 'WEB BÁN CARD POKEMON ', link: '#', image: '/images/card_pokemon.png', width: 1864, height: 4233, blank: true },
+];
+
+export default function Home() {
+  const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+  const [showIntro, setShowIntro] = useState(true);
+  const [introExit, setIntroExit] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const headerRef = useRef(null);
+  const swiperRef = useRef(null);
+  const testiPrevRef = useRef(null);
+  const testiNextRef = useRef(null);
+
+  useEffect(() => {
+    const ENTER_MS = 900;
+    const HOLD_MS = 1200;
+    const EXIT_MS = 900;
+
+    const exitTimer = setTimeout(() => {
+      setIntroExit(true);
+    }, ENTER_MS + HOLD_MS);
+
+    const hideTimer = setTimeout(() => {
+      setShowIntro(false);
+    }, ENTER_MS + HOLD_MS + EXIT_MS);
+
+    return () => {
+      clearTimeout(exitTimer);
+      clearTimeout(hideTimer);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!showIntro) return undefined;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [showIntro]);
+
+  useEffect(() => {
+    // Scroll handling
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+
+      // Scroll Spy
+      const sections = document.querySelectorAll("section");
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 150) {
+          current = section.getAttribute("id") || "";
+        }
+      });
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Intersection Observer
+    let countersStarted = false;
+    const startCounters = () => {
+      if (countersStarted) return;
+      countersStarted = true;
+
+      const counters = document.querySelectorAll(".counter");
+      const speed = 200;
+
+      counters.forEach((counter) => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const inc = target / speed;
+
+          if (count < target) {
+            counter.innerText = Math.ceil(count + inc);
+            setTimeout(updateCount, 10);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    };
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.15,
+    };
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          if (entry.target.classList.contains("hero-stats")) {
+            startCounters();
+          }
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const fadeElements = document.querySelectorAll(".fade-in-up");
+    fadeElements.forEach((el) => revealObserver.observe(el));
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      revealObserver.disconnect();
+    };
+  }, []);
+
+  // Chặn scroll body khi menu mobile mở
+  useEffect(() => {
+    if (navOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [navOpen]);
+
+  return (
+    <>
+      {showIntro && (
+        <div className={`entry-overlay ${introExit ? "is-exit" : ""}`} aria-hidden="true">
+          <div className="entry-overlay-glow"></div>
+          <div className="entry-overlay-content">
+            <div className="entry-logo-wrap">
+              <img
+                src={BRAND_LOGO_SRC}
+                alt="MOCMOC Logo"
+                className="entry-logo"
+              />
+            </div>
+            <h1 className="entry-title">MOCMOC DIGITAL</h1>
+            <div className="entry-line"></div>
+            <p className="entry-sub">THIẾT KẾ WEBSITE DOANH NGHIỆP CHUẨN SEO</p>
+          </div>
+        </div>
+      )}
+
+      <div className="affiliate-topbar">
+        <div className="container affiliate-topbar-inner">
+          <p className="affiliate-topbar-text">
+            Lời mời hợp tác cùng MOCMOC: Trở thành đối tác thân thiết, cùng nhau tạo thu nhập bền vững.
+          </p>
+          <div className="affiliate-topbar-actions">
+            <a href="#consult" className="affiliate-topbar-btn primary">Nhận tư vấn ngay</a>
+            <a href="tel:0858200725" className="affiliate-topbar-btn ghost">Hotline 0858 200 725</a>
+          </div>
+        </div>
+      </div>
+
+      {/* Header */}
+      <header
+        className={`header ${scrolled ? "scrolled" : "header-transparent"} ${navOpen ? "nav-is-open" : ""}`}
+        id="header"
+        ref={headerRef}
+      >
+        <div className="container header-container">
+          <Link href="#" className="logo">
+            <img
+              src={BRAND_LOGO_SRC}
+              alt="MOCMOC Logo"
+              style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto', height: '50px' }}
+            />
+          </Link>
+          <nav className={`nav ${navOpen ? "nav-open" : ""}`}>
+            <ul className="nav-list">
+
+              <li className={`nav-item-dropdown ${dropdownOpen ? "dropdown-open" : ""}`}>
+                <Link
+                  href="#services"
+                  className={`nav-link ${activeSection === "services" ? "active" : ""
+                    }`}
+                  onClick={(e) => {
+                    if (window.innerWidth <= 1024) {
+                      e.preventDefault();
+                      setDropdownOpen(!dropdownOpen);
+                    } else {
+                      setNavOpen(false);
+                    }
+                  }}
+                >
+                  Dịch vụ
+                  <svg className="nav-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 4l4 4 4-4" /></svg>
+                </Link>
+                <ul className="dropdown-menu mega-menu">
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Digital Marketing</h4>
+                    <ul className="dropdown-col-list">
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Dịch vụ Quảng Cáo Google Ads</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Dịch vụ Quảng Cáo Facebook Ads</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Quảng cáo Zalo Ads</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Marketing bất động sản</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Dịch vụ Seo bất động sản</Link></li>
+
+                    </ul>
+                  </li>
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Dịch vụ Seeding</h4>
+                    <ul className="dropdown-col-list">
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Dịch vụ Google Map</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Dịch vụ xác minh Google Map</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Tăng tương tác Facebook</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Tăng tương tác Tiktok</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Tăng tương tác Instagram</Link></li>
+                    </ul>
+                  </li>
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Thiết kế Website</h4>
+                    <ul className="dropdown-col-list">
+                      <li><Link href="https://bds.mocmoc.vn" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Thiết kế website bất động sản</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Đăng ký tên miền</Link></li>
+                      <li><Link href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Tạo Email doanh nghiệp</Link></li>
+                    </ul>
+                  </li>
+                  <li className="dropdown-col">
+                    <h4 className="dropdown-col-title">Thiết kế – Media</h4>
+                    <ul className="dropdown-col-list">
+                      <li><a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="dropdown-item" onClick={() => { setNavOpen(false); setDropdownOpen(false); }}>Thiết kế bộ nhận diện thương hiệu</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <Link
+                  href="https://bds.mocmoc.vn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`nav-link ${activeSection === "pricing" ? "active" : ""
+                    }`}
+
+                >
+                  Thiết kế website bất động sản
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="#pricing"
+                  className={`nav-link ${activeSection === "pricing" ? "active" : ""
+                    }`}
+                  onClick={() => setNavOpen(false)}
+                >
+                  Bảng giá
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="#projects"
+                  className={`nav-link ${activeSection === "projects" ? "active" : ""
+                    }`}
+                  onClick={() => setNavOpen(false)}
+                >
+                  Dự án
+                </Link>
+              </li>
+            </ul>
+          </nav>
+          <div className="header-actions">
+            <a href="tel:0858200725" className="btn-outline">
+              0858 200 725
+            </a>
+            <a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="btn-primary">
+              Liên Hệ Ngay
+            </a>
+          </div>
+          <button
+            className="mobile-toggle"
+            aria-label="Toggle menu"
+            onClick={() => {
+              setNavOpen(!navOpen);
+              setDropdownOpen(false);
+            }}
+          >
+            <span
+              style={{
+                transform: navOpen
+                  ? "rotate(45deg) translate(5px, 5px)"
+                  : "none",
+              }}
+            ></span>
+            <span style={{ opacity: navOpen ? "0" : "1" }}></span>
+            <span
+              style={{
+                transform: navOpen
+                  ? "rotate(-45deg) translate(5px, -5px)"
+                  : "none",
+              }}
+            ></span>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        {/* Hero Section */}
+        <section id="home" className="hero">
+          {/* Video nền - sẽ bổ sung sau */}
+          <div className="hero-video-wrap">
+            <video
+              className="hero-video"
+              autoPlay muted loop playsInline
+              preload="metadata"
+              poster="/images/bia mocmoc.png"
+            >
+              <source src="/videos/video-index-home.mp4" type="video/mp4" />
+            </video>
+          </div>
+          {/* Gradient overlay trái sang phải */}
+          <div className="hero-overlay"></div>
+
+          <div className="container hero-container">
+            <div className="hero-left fade-in-up">
+              <p className="hero-pre">Thiết kế website chuyên nghiệp</p>
+              <h1 className="hero-title">
+                Nâng tầm thương hiệu<br />
+                <span className="text-gradient-white">vượt trội cùng MOCMOC</span>
+              </h1>
+              <p className="hero-subtitle">
+                Giao diện chuẩn UI/UX, tối ưu SEO hoàn hảo,<br />
+                bàn giao nhanh — bảo hành trọn đời.
+              </p>
+              <div className="hero-cta">
+                <a href="#consult" className="btn-hero-primary">
+                  Liên Hệ Ngay
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                </a>
+              </div>
+              <div className="hero-stats fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="5000">0</span>+</span>
+                  <span className="hero-stat-label">Dự Án</span>
+                </div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="3686">0</span>+</span>
+                  <span className="hero-stat-label">Khách Hàng</span>
+                </div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="7">0</span>+</span>
+                  <span className="hero-stat-label">Năm KN</span>
+                </div>
+                <div className="hero-stat-divider"></div>
+                <div className="hero-stat">
+                  <span className="hero-stat-num"><span className="counter" data-target="98">0</span>%</span>
+                  <span className="hero-stat-label">Hài Lòng</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Projects / Slider Section */}
+        <section id="projects" className="projects section-padding" style={{ overflow: 'hidden' }}>
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Dự án <span className="text-gradient">Nổi Bật</span>
+              </h2>
+              <p className="section-desc">
+                Cùng khám phá những sản phẩm công nghệ tuyệt vời mà chúng tôi đã thiết kế và triển khai thành công.
+              </p>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                initialSlide={1}
+                loop={true}
+                coverflowEffect={{
+                  rotate: 20,
+                  stretch: 0,
+                  depth: 200,
+                  modifier: 1,
+                  slideShadows: true,
+                }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                modules={[EffectCoverflow, Pagination, Autoplay]}
+                className="project-swiper"
+                style={{ paddingBottom: '3rem' }}
+                onSwiper={(swiper) => { swiperRef.current = swiper; }}
+              >
+                {PROJECTS.map((item, index) => (
+                  <SwiperSlide key={item.id} className="project-slide">
+                    <div 
+                      className="project-link" 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        if (swiperRef.current) {
+                          swiperRef.current.slideToLoop(index);
+                        }
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <div className="project-img-wrap">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          width={item.width}
+                          height={item.height}
+                          quality={PROJECT_IMAGE_QUALITY}
+                          sizes={PROJECT_IMAGE_SIZES}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <p className="project-slide-title">{item.title}</p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" className="pricing section-padding" style={{ overflow: 'hidden' }}>
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Bảng Giá <span className="text-gradient">Thiết Kế Trọn Gói</span>
+              </h2>
+              <p className="section-desc">
+                Chất lượng cao nhất - Chi phí phù hợp nhất.
+              </p>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <Swiper
+                effect={'coverflow'}
+                grabCursor={true}
+                centeredSlides={true}
+                slidesPerView={'auto'}
+                initialSlide={2}
+                coverflowEffect={{ rotate: 20, stretch: 0, depth: 200, modifier: 1, slideShadows: true }}
+                pagination={{ clickable: true, dynamicBullets: true }}
+                modules={[EffectCoverflow, Pagination]}
+                className="pricing-swiper"
+                style={{ paddingBottom: '3rem' }}
+              >
+                {/* Basic */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">BASIC</h3>
+                      <p className="plan-desc">Hoàn hảo cho khởi đầu, giao diện chuẩn SEO với chi phí tối ưu.</p>
+                      <div className="plan-price">
+                        <span className="old-price">1.990.000 VNĐ</span>
+                        <span className="current-price">1.499.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 1-3 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting .app</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Template tối ưu chuyển đổi</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Cấu trúc chuẩn SEO</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Bảo mật SSL</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Nhúng Google Search Console, Google Analytics</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Basic</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* Business */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">BUSINESS</h3>
+                      <p className="plan-desc">Tối ưu SEO, thiết kế đẹp nâng tầm doanh nghiệp.</p>
+                      <div className="plan-price">
+                        <span className="old-price">4.990.000 VNĐ</span>
+                        <span className="current-price">2.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> 6-10 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện theo mẫu tự chọn</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng Domain & Hosting .app</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tặng 1000 Follows Fanpage</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Trang web chuẩn SEO 3 Trang</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Basic</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói Business</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* PRO */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel highlight">
+                    <div className="popular-badge">PHỔ BIẾN NHẤT</div>
+                    <div className="pricing-header">
+                      <h3 className="plan-name">PRO</h3>
+                      <p className="plan-desc">Hệ thống website chuyên nghiệp, tối ưu trải nghiệm người dùng.</p>
+                      <div className="plan-price">
+                        <span className="current-price">4.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giao diện tương thích mọi thiết bị</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Admin quản lí dễ dàng</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói Business</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-primary btn-full pulse">Chọn Gói PRO</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* PRO+ */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">PRO+</h3>
+                      <p className="plan-desc">Website thương mại điện tử với cổng thanh toán trực tuyến.</p>
+                      <div className="plan-price">
+                        <span className="current-price">6.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 10 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp cổng thanh toán (VNPay, Momo, ZaloPay,...)</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Quản lý đơn hàng tự động</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Giỏ hàng & Thanh toán trực tuyến</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Quản lý kho & sản phẩm</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Báo cáo doanh thu rõ ràng</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói PRO</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói PRO+</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+
+                {/* VIP */}
+                <SwiperSlide className="pricing-swiper-slide">
+                  <div className="pricing-card glass-panel">
+                    <div className="pricing-header">
+                      <h3 className="plan-name">VIP</h3>
+                      <p className="plan-desc">Hệ thống website đa kênh đồ sộ, tích hợp AI mạnh mẽ.</p>
+                      <div className="plan-price">
+                        <span className="current-price">10.999.000 <span className="currency">VNĐ</span></span>
+                      </div>
+                    </div>
+                    <ul className="plan-features">
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> &gt; 9 ngày hoàn thành</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Chỉnh sửa thiết kế đến khi hài lòng</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đồng bộ hệ thống CRM </li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Tích hợp ChatGPT / AI</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Quản lý bán hàng nội bộ</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Đa ngôn ngữ</li>
+                      <li><LuCheck size={20} color="#3A7BD5" style={{ flexShrink: 0, marginTop: '2px' }} /> Mọi tính năng Gói PRO+</li>
+                    </ul>
+                    <div className="pricing-footer">
+                      <a href="#consult" className="btn-outline btn-full">Chọn Gói VIP</a>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section id="services" className="services section-padding dark-bg">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Dịch vụ <span className="text-gradient">Công Nghệ Toàn Diện</span>
+              </h2>
+              <p className="section-desc">
+                Thiết kế website, app mobile, AI chatbot và giải pháp dành cho sinh viên CNTT.
+              </p>
+            </div>
+
+            <div className="services-grid">
+              <article className="service-card glass-panel fade-in-up" style={{ animationDelay: "0.1s" }}>
+                <div className="bento-icon"><LuRocket size={30} color="#E15021" /></div>
+                <h3>Thiết kế Website</h3>
+                <p>
+                  Landing page, website doanh nghiệp, website bán hàng chuẩn UI/UX, tối ưu SEO và tốc độ.
+                </p>
+                <ul>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Bàn giao nhanh 3-10 ngày</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Responsive đa thiết bị</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Bảo hành kỹ thuật dài hạn</li>
+                </ul>
+              </article>
+
+              <article className="service-card glass-panel fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <div className="bento-icon"><LuBlocks size={30} color="#E15021" /></div>
+                <h3>App Mobile iOS/Android</h3>
+                <p>
+                  Xây dựng ứng dụng React Native/Flutter, tối ưu trải nghiệm, dễ mở rộng theo mô hình kinh doanh.
+                </p>
+                <ul>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Cross-platform hiệu suất cao</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> API và dữ liệu đồng bộ</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Hỗ trợ triển khai store</li>
+                </ul>
+              </article>
+
+              <article className="service-card glass-panel fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <div className="bento-icon"><LuSparkles size={30} color="#E15021" /></div>
+                <h3>AI Chatbot thông minh</h3>
+                <p>
+                  Tự động hóa tư vấn và chăm sóc khách hàng 24/7, tích hợp website, Zalo hoặc các kênh bán hàng.
+                </p>
+                <ul>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Trả lời tự động theo ngữ cảnh</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Hỗ trợ chốt đơn nhanh hơn</li>
+                  <li><LuCheck size={16} color="#3A7BD5" /> Theo dõi dữ liệu và tối ưu chuyển đổi</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* Benefits Section */}
+        <section id="benefits" className="benefits section-padding">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Lợi ích của <span className="text-gradient">website chuyên nghiệp</span>
+              </h2>
+              <p className="section-desc">
+                Đầu tư vào một website chất lượng là bạn đang đầu tư vào tương lai của
+                doanh nghiệp.
+              </p>
+            </div>
+
+            <div className="bento-grid">
+              <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.1s" }}>
+                <div className="bento-icon"><LuRocket size={32} color="#E15021" /></div>
+                <h3 className="bento-title">Tốc độ & Hiệu suất</h3>
+                <p className="bento-desc">
+                  Tối ưu hình ảnh, giảm thiểu JS/CSS và sử dụng CDN giúp web load nhanh
+                  như chớp, giữ chân khách hàng.
+                </p>
+              </div>
+
+              <div className="bento-item bento-large glass-panel fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <div className="bento-icon"><LuTarget size={32} color="#E15021" /></div>
+                <h3 className="bento-title">Chuẩn SEO Tuyệt Đối</h3>
+                <p className="bento-desc">
+                  Tối ưu on-page, URL thân thiện, schema markup và cấu trúc mã nguồn theo
+                  tiêu chuẩn cao nhất của Google. Tăng trưởng organic traffic bền vững.
+                </p>
+              </div>
+
+              <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <div className="bento-icon"><LuShieldCheck size={32} color="#E15021" /></div>
+                <h3 className="bento-title">Bảo Mật Tối Đa</h3>
+                <p className="bento-desc">
+                  Bảo vệ SSL/HTTPS, chống DDoS, tường lửa và mã hóa dữ liệu an toàn chặn
+                  đứng mọi cuộc tấn công.
+                </p>
+              </div>
+
+              <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.4s" }}>
+                <div className="bento-icon"><LuSparkles size={32} color="#E15021" /></div>
+                <h3 className="bento-title">Chuẩn UI/UX</h3>
+                <p className="bento-desc">
+                  Thiết kế sáng tạo, đẹp mắt, responsive đa thiết bị, mang lại trải
+                  nghiệm tương tác liền mạch.
+                </p>
+              </div>
+
+              <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.5s" }}>
+                <div className="bento-icon"><LuSettings size={32} color="#E15021" /></div>
+                <h3 className="bento-title">Dễ Dàng Quản Trị</h3>
+                <p className="bento-desc">
+                  Hệ thống CMS hiện đại, trực quan, cho phép thao tác cập nhật nội dung
+                  chỉ trong nháy mắt.
+                </p>
+              </div>
+
+              <div className="bento-item glass-panel fade-in-up" style={{ animationDelay: "0.6s" }}>
+                <div className="bento-icon"><LuBlocks size={32} color="#E15021" /></div>
+                <h3 className="bento-title">Tính Năng Đa Dạng</h3>
+                <p className="bento-desc">
+                  Tích hợp TMĐT, thanh toán, CRM, Chatbot, dễ dàng mở rộng khi doanh
+                  nghiệp phát triển.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section id="process" className="process section-padding dark-bg">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                <span className="text-gradient">Quy Trình</span> Làm Việc
+              </h2>
+              <p className="section-desc">
+                8 bước chuyên nghiệp đảm bảo dự án thành công mỹ mãn.
+              </p>
+            </div>
+
+            <div className="timeline">
+
+              <div className="timeline-item">
+                <div className="timeline-dot">1</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Tìm hiểu yêu cầu</h3>
+                  <p>
+                    Phân tích chuyên sâu nhu cầu, mục tiêu, khách hàng mục tiêu của doanh
+                    nghiệp để đưa ra hướng giải pháp.
+                  </p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot">2</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Lập kế hoạch & báo giá</h3>
+                  <p>
+                    Chi tiết hóa timeline, phân bổ nguồn lực, thống nhất tính năng và chi
+                    phí rõ ràng.
+                  </p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot">3</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Ký kết hợp đồng</h3>
+                  <p>
+                    Đảm bảo quyền lợi hai bên với những điều khoản rõ ràng, cam kết KPIs.
+                  </p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot">4</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Thiết kế & Phát triển</h3>
+                  <p>
+                    Lên wireframe, thiết kế UI/UX theo Brand Guideline và code hoàn thiện
+                    bằng các công nghệ tân tiến nhất.
+                  </p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot">5</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Kiểm thử & Tối ưu</h3>
+                  <p>
+                    Đội ngũ QA/QC audit toàn bộ tính năng, bugs, tốc độ và chuẩn SEO
+                    Onpage.
+                  </p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot">6</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Feedback & Chỉnh sửa</h3>
+                  <p>
+                    Gửi bản Demo, nhận luồng phản hồi và mài giũa sản phẩm đến khi đạt
+                    mức độ hoàn hảo.
+                  </p>
+                </div>
+              </div>
+              <div className="timeline-item">
+                <div className="timeline-dot">7</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Hướng dẫn & Bàn giao</h3>
+                  <p>
+                    Training thao tác quản trị, bàn giao Source Code và các tài liệu
+                    hướng dẫn.
+                  </p>
+                </div>
+              </div>
+
+              <div className="timeline-item">
+                <div className="timeline-dot">8</div>
+                <div className="timeline-content glass-panel fade-in-up">
+                  <h3 className="timeline-title">Hỗ trợ & Bảo trì</h3>
+                  <p>
+                    Đồng hành trọn đời, support kỹ thuật 24/7 để website luôn hoạt động
+                    ổn định nhất.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* AI Products Section */}
+        <section id="ai-products" className="ai-products section-padding">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <p className="section-pre-label">Sản Phẩm AI Đột Phá</p>
+              <h2 className="section-title">
+                Công Nghệ AI<br />
+                <span className="text-gradient">Của MOCMOC</span>
+              </h2>
+            </div>
+
+            <div className="ai-products-grid">
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.1s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="https://web366ai.com/" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/plugin-viet-bai-ai-content.png"
+                      alt="AI Writter"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="https://web366ai.com/" target="_blank" rel="noopener noreferrer" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="https://web366ai.com/" target="_blank" rel="noopener noreferrer"> AI Writter</a></h3>
+                  <span>Sản phẩm tạo nội dung tự động.</span>
+                </div>
+              </div>
+
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="https://website366.com/nghe-training-chatbot-la-gi-tim-hieu-nghe-moi-noi-cung-xu-huong-ai-2025/" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/chat-bot-ai-doanh-nghiep.png"
+                      alt="Chatbot AI doanh nghiệp"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="https://website366.com/nghe-training-chatbot-la-gi-tim-hieu-nghe-moi-noi-cung-xu-huong-ai-2025/" target="_blank" rel="noopener noreferrer" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="https://website366.com/nghe-training-chatbot-la-gi-tim-hieu-nghe-moi-noi-cung-xu-huong-ai-2025/" target="_blank" rel="noopener noreferrer">Chatbot AI</a></h3>
+                  <span>CHATBOT thông minh training cho từng Doanh Nghiệp</span>
+                </div>
+              </div>
+
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.3s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="#">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/email-marketing.png"
+                      alt="Email Marketing AI"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="#" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="#">Email Marketing AI</a></h3>
+                  <span>Tự động hóa trả lời email</span>
+                </div>
+              </div>
+
+              <div className="ai-product-card glass-panel fade-in-up" style={{ animationDelay: '0.4s' }}>
+                <div className="ai-product-thumb">
+                  <div className="ai-product-overlay"></div>
+                  <a href="#">
+                    <img
+                      src="https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/e-commerce-analytics-AI.png"
+                      alt="E-commerce Analytics AI"
+                      loading="lazy"
+                    />
+                  </a>
+                  <a href="#" className="ai-product-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                </div>
+                <div className="ai-product-content">
+                  <h3><a href="#">E-commerce Shop AI</a></h3>
+                  <span>Phân tích bán hàng</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonial Section */}
+        <section id="testimonials" className="testimonials section-padding">
+          <div className="container">
+            <div className="testi-top">
+              <div className="section-header fade-in-up">
+                <p className="section-pre-label">Khách Hàng Nói Gì</p>
+                <h2 className="section-title">
+                  Khách hàng chia sẻ<br />
+                  <span className="text-gradient">Về Chúng Tôi</span>
+                </h2>
+              </div>
+              <div className="testi-nav-wrap fade-in-up">
+                <button ref={testiPrevRef} className="testi-nav-btn" aria-label="Previous">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                </button>
+                <button ref={testiNextRef} className="testi-nav-btn" aria-label="Next">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="fade-in-up" style={{ animationDelay: '0.2s' }}>
+              <Swiper
+                slidesPerView={1}
+                spaceBetween={24}
+                loop={true}
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                navigation={true}
+                onSwiper={(swiper) => {
+                  swiper.params.navigation.prevEl = testiPrevRef.current;
+                  swiper.params.navigation.nextEl = testiNextRef.current;
+                  swiper.navigation.init();
+                  swiper.navigation.update();
+                }}
+                breakpoints={{
+                  768: { slidesPerView: 1.5 },
+                  1024: { slidesPerView: 2 },
+                }}
+                modules={[Autoplay, Navigation]}
+                className="testi-swiper"
+              >
+                {[
+                  {
+                    id: 1,
+                    text: 'Trước đây tôi từng làm việc với vài đơn vị, nhưng chưa thật sự hài lòng vì họ chỉ chú trọng giao diện mà bỏ qua chiến lược thương hiệu. Đến khi hợp tác với đội ngũ này, tôi mới hiểu thế nào là giải pháp xây dựng website chuyên sâu. Họ không chỉ làm đẹp mà còn hỗ trợ nội dung, tối ưu SEO, và đồng hành xây dựng thương hiệu. Rất đáng đầu tư.',
+                    name: 'Anh Trường',
+                    role: 'Giám Đốc - the1987.vn',
+                    avatar: 'https://tbay.vn/wp-content/uploads/2021/05/truong.jpg',
+                    logo: 'https://the1987.vn/wp-content/uploads/2020/03/new-logo2.png',
+                    logoLink: 'https://the1987.vn',
+                  },
+                  {
+                    id: 2,
+                    text: 'Ban đầu tôi nghĩ chỉ cần web đẹp là được, nhưng các đối tác trước đây không mang lại hiệu quả như mong đợi. Sau khi làm việc với đội ngũ này, tôi mới thấy rõ giá trị từ dịch vụ phát triển website toàn diện – từ thiết kế, nội dung, đến SEO và định hướng thương hiệu. Kết quả là trang web không chỉ vận hành tốt mà còn mang lại nhiều khách hàng hơn.',
+                    name: 'Chị Thảo',
+                    role: 'Giám Đốc - Everonthuduc.com',
+                    avatar: 'https://tbay.vn/wp-content/uploads/2021/05/thao.jpg',
+                    logo: 'https://everonthuduc.com/wp-content/uploads/2020/09/new-logo.png',
+                    logoLink: 'https://everonthuduc.com',
+                  },
+                  {
+                    id: 3,
+                    text: 'Là một doanh nghiệp mới, chúng tôi cần nền tảng website vừa đẹp vừa sẵn sàng hoạt động ngay. May mắn là đã tìm được một đội ngũ biết lắng nghe, thấu hiểu và tư vấn tận tình. Họ hỗ trợ chúng tôi xuyên suốt từ tư vấn ý tưởng đến hoàn thiện. Dịch vụ bảo hành và hỗ trợ sau bàn giao cũng rất tốt.',
+                    name: 'Anh Phát',
+                    role: 'Giám Đốc - congminhland.com',
+                    avatar: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/phat.png',
+                    logo: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/congminhland-logo.png',
+                    logoLink: 'https://congminhland.com',
+                  },
+                  {
+                    id: 4,
+                    text: 'Trang web cũ đã lỗi thời, tôi cần một nền tảng mới hiện đại và hiệu quả hơn. Tôi chọn đơn vị này vì uy tín và sự đa dạng trong các gói xây dựng giao diện web. Họ không chỉ mang đến thiết kế ấn tượng mà còn tích hợp nhiều tính năng thân thiện với người dùng. Doanh thu cũng tăng rõ rệt sau khi triển khai trang web mới.',
+                    name: 'Anh Tùng',
+                    role: 'Giám Đốc - mak.vn',
+                    avatar: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/anh-tung.png',
+                    logo: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/LOGO-MAK.png',
+                    logoLink: 'https://mak.vn',
+                  },
+                  {
+                    id: 5,
+                    text: 'Với đặc thù ngành nghề, chúng tôi cần một trang web vừa phản ánh được bản sắc riêng vừa đáp ứng yếu tố chuyên nghiệp. Đội ngũ đã đồng hành rất sát sao, nghiên cứu ngành kỹ lưỡng để đưa ra giải pháp phù hợp. Sự tận tâm và hiểu biết sâu sắc đã giúp chúng tôi có được một sản phẩm như mong đợi.',
+                    name: 'Anh Hoàng',
+                    role: 'Giám Đốc - grehebe.com',
+                    avatar: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/huy-hoang.png',
+                    logo: 'https://website366.com/wp-content/themes/university/page-templates/home3/assets/img/wweb-bl-01-01.png',
+                    logoLink: 'https://grehebe.com',
+                  },
+                ].map((item) => (
+                  <SwiperSlide key={item.id} className="testi-slide">
+                    <div className="testi-card glass-panel">
+                      <div className="testi-quote">
+                        <svg width="36" height="28" viewBox="0 0 36 28" fill="none"><path d="M0 28V17.6C0 12.267 1.333 7.933 4 4.6 6.667 1.533 10.533 0 15.6 0v4.8c-2.667.267-4.8 1.4-6.4 3.4-1.6 1.867-2.4 4.267-2.4 7.2H12V28H0zm20 0V17.6c0-5.333 1.333-9.667 4-13C26.667 1.533 30.533 0 35.6 0v4.8c-2.667.267-4.8 1.4-6.4 3.4-1.6 1.867-2.4 4.267-2.4 7.2H32V28H20z" fill="var(--brand-red-1)" opacity="0.15"/></svg>
+                      </div>
+                      <p className="testi-text">{item.text}</p>
+                      <div className="testi-footer">
+                        <div className="testi-author">
+                          <img src={item.avatar} alt={item.name} className="testi-avatar" loading="lazy" />
+                          <div>
+                            <h4 className="testi-name">{item.name}</h4>
+                            <span className="testi-role">{item.role}</span>
+                          </div>
+                        </div>
+                        <a href={item.logoLink} target="_blank" rel="noopener noreferrer" className="testi-logo-link">
+                          <img src={item.logo} alt={item.name} className="testi-company-logo" loading="lazy" />
+                        </a>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </div>
+        </section>
+
+        {/* Student Support Section */}
+        <section id="student" className="student section-padding">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Hỗ Trợ <span className="text-gradient">Sinh Viên CNTT</span>
+              </h2>
+              <p className="section-desc">
+                Gói hỗ trợ đồ án linh hoạt theo ngân sách: từ đồ án môn học đến mentor 1-1.
+              </p>
+            </div>
+
+            <div className="student-grid">
+              <div className="student-card glass-panel fade-in-up" style={{ animationDelay: "0.1s" }}>
+                <h3>Đồ án môn học</h3>
+                <p className="student-price">Từ 500.000đ</p>
+                <ul>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Source code có chú thích</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Hỗ trợ chỉnh sửa theo yêu cầu môn</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Hướng dẫn demo và báo cáo</li>
+                </ul>
+              </div>
+
+              <div className="student-card glass-panel fade-in-up" style={{ animationDelay: "0.2s" }}>
+                <h3>Đồ án tốt nghiệp</h3>
+                <p className="student-price">Từ 2.000.000đ</p>
+                <ul>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Full-stack project hoàn chỉnh</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Tài liệu đầy đủ cho bảo vệ</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Đồng hành tới khi nộp</li>
+                </ul>
+              </div>
+
+              <div className="student-card glass-panel fade-in-up" style={{ animationDelay: "0.3s" }}>
+                <h3>Mentor 1-1 & Fix bug</h3>
+                <p className="student-price">Từ 100.000đ</p>
+                <ul>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Review code theo buổi</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Tối ưu hiệu năng và kiến trúc</li>
+                  <li><LuCircleCheck size={16} color="#E15021" /> Định hướng học tập thực tế</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" className="faq section-padding dark-bg">
+          <div className="container">
+            <div className="section-header text-center fade-in-up">
+              <h2 className="section-title">
+                Câu hỏi <span className="text-gradient">Thường Gặp</span>
+              </h2>
+            </div>
+
+            <div className="faq-list fade-in-up" style={{ animationDelay: "0.2s" }}>
+              <details className="faq-item" open>
+                <summary>Thời gian hoàn thành website bao lâu?</summary>
+                <p>Website cơ bản thường từ 3-10 ngày tùy độ phức tạp và số lượng tính năng.</p>
+              </details>
+
+              <details className="faq-item">
+                <summary>Có hỗ trợ sau bàn giao không?</summary>
+                <p>Có. Chúng tôi hỗ trợ kỹ thuật và chỉnh sửa theo phạm vi bảo hành đã cam kết.</p>
+              </details>
+
+              <details className="faq-item">
+                <summary>Có làm app mobile và chatbot AI không?</summary>
+                <p>Có. Chúng tôi triển khai app iOS/Android và chatbot AI tích hợp đa kênh.</p>
+              </details>
+
+              <details className="faq-item">
+                <summary>Giá đồ án sinh viên có linh hoạt không?</summary>
+                <p>Có. Giá được tối ưu theo mức độ yêu cầu để phù hợp ngân sách sinh viên.</p>
+              </details>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section / Consult */}
+        <section id="consult" className="cta-section section-padding">
+          <div className="container">
+            <div className="cta-box glass-panel text-center fade-in-up">
+              <h2 className="cta-title">Sẵn sàng để bắt đầu dự án của bạn?</h2>
+              <p className="cta-desc">
+                Liên hệ với MOCMOC ngay hôm nay. Chúng tôi sẽ phân tích và đưa ra lộ trình
+                tư vấn hoàn toàn miễn phí, kiến tạo giá trị thực cho tương lai số của bạn.
+              </p>
+              <div className="cta-form">
+                <a href="http://zalo.me/0858200725" target="_blank" rel="noopener noreferrer" className="btn-primary btn-cta-large">
+                  Liên Hệ Ngay
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <a
+        href="https://zalo.me/0858200725"
+        target="_blank"
+        rel="noreferrer"
+        className="floating-zalo-btn"
+        aria-label="Liên hệ qua Zalo"
+      >
+        <span className="floating-zalo-ripple"></span>
+        <span className="floating-zalo-ripple floating-zalo-ripple--2"></span>
+        <img src="/images/logo-zalo.png" alt="Zalo" width="90" height="90" style={{ objectFit: 'contain', borderRadius: '50%' }} />
+      </a>
+
+      {/* Footer */}
+      <footer className="footer border-t">
+        <div className="container">
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <Link href="#" className="logo">
+                <img
+                  src={BRAND_LOGO_SRC}
+                  alt="MOCMOC Logo"
+                  style={{ objectFit: 'contain', maxHeight: '50px', width: 'auto', height: '50px' }}
+                />
+              </Link>
+              <p className="footer-slogan">ĐỔI MỚI CÔNG NGHỆ - TỐI ĐA HIỆU QUẢ</p>
+              <p className="footer-contact">
+                Hotline: <strong className="text-gradient">0858 200 725</strong>
+              </p>
+            </div>
+            <div className="footer-links">
+              <h3>Khám Phá</h3>
+              <ul>
+                <li><Link href="#home">Trang chủ</Link></li>
+                <li><Link href="#services">Dịch vụ</Link></li>
+                <li><Link href="#projects">Dự án MVP</Link></li>
+                <li><Link href="#">Blog Kiến Thức</Link></li>
+              </ul>
+            </div>
+            <div className="footer-links">
+              <h3>Dịch Vụ</h3>
+              <ul>
+                <li><Link href="#">Thiết Kế Website</Link></li>
+                <li><Link href="#">Thiết Kế Web App</Link></li>
+                <li><Link href="#">SEO Tổng Thể</Link></li>
+                <li><Link href="#">Digital Ads</Link></li>
+              </ul>
+            </div>
+            <div className="footer-social">
+              <h3>Kết Nối</h3>
+              <div className="social-icons">
+                <Link href="#" className="social-icon"><FaFacebookF size={18} /></Link>
+                <Link href="#" className="social-icon"><FaTiktok size={18} /></Link>
+                <Link href="#" className="social-icon"><FaYoutube size={18} /></Link>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>
+              &copy; 2026 MOCMOC. All rights reserved. Designed with ❤️ for excellence.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
