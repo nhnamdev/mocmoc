@@ -1,10 +1,13 @@
 const express = require("express");
+const path = require("node:path");
 const cors = require("cors");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const config = require("./config/env");
 const healthRoutes = require("./routes/health.routes");
 const contactRoutes = require("./routes/contact.routes");
+const siteRoutes = require("./routes/site.routes");
+const adminRoutes = require("./routes/admin.routes");
 const { errorHandler, notFoundHandler } = require("./middlewares/errorHandler");
 
 const app = express();
@@ -17,8 +20,8 @@ app.use(helmet());
 app.use(
   cors({
     origin: config.appOrigins,
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Admin-Key"],
   }),
 );
 app.use(express.json({ limit: "1mb" }));
@@ -34,8 +37,11 @@ app.use(
   }),
 );
 
+app.use("/admin", express.static(path.join(__dirname, "admin")));
 app.use("/api/health", healthRoutes);
 app.use("/api/contacts", contactRoutes);
+app.use("/api/site", siteRoutes);
+app.use("/api/admin", adminRoutes);
 
 app.use(notFoundHandler);
 app.use(errorHandler);

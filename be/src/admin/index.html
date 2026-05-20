@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MOCMOC Admin</title>
+    <link rel="stylesheet" href="/admin/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MOCMOC Admin</p>
+        <h1>Quản trị dữ liệu website</h1>
+      </div>
+      <div class="auth-box">
+        <input id="adminKey" type="password" placeholder="ADMIN_API_KEY" autocomplete="current-password" />
+        <button id="saveKeyBtn" type="button">Lưu key</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <nav class="tabs" aria-label="Khu vực quản trị">
+        <button class="tab is-active" type="button" data-tab="projects">Dự án nổi bật</button>
+        <button class="tab" type="button" data-tab="pricing">Bảng giá</button>
+      </nav>
+
+      <section id="notice" class="notice" hidden></section>
+
+      <section id="projectsPanel" class="panel">
+        <div class="panel-head">
+          <h2>Dự án nổi bật</h2>
+          <button id="newProjectBtn" type="button">Thêm dự án</button>
+        </div>
+        <div class="grid">
+          <form id="projectForm" class="card form-card">
+            <input type="hidden" name="id" />
+            <label>Tên dự án<input name="title" required /></label>
+            <label>Link<input name="link" placeholder="#" /></label>
+            <label>Ảnh<input name="image" required placeholder="/images/example.png hoặc https://..." /></label>
+            <div class="two-cols">
+              <label>Rộng<input name="width" type="number" min="1" value="1200" /></label>
+              <label>Cao<input name="height" type="number" min="1" value="800" /></label>
+            </div>
+            <div class="two-cols">
+              <label>Thứ tự<input name="sortOrder" type="number" value="0" /></label>
+              <label>Trạng thái
+                <select name="isActive">
+                  <option value="true">Hiển thị</option>
+                  <option value="false">Ẩn</option>
+                </select>
+              </label>
+            </div>
+            <label class="checkbox"><input name="blank" type="checkbox" checked /> Mở tab mới</label>
+            <div class="actions">
+              <button type="submit">Lưu dự án</button>
+              <button class="ghost" type="button" data-reset="project">Làm mới</button>
+            </div>
+          </form>
+          <div class="card table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Tên</th>
+                  <th>Thứ tự</th>
+                  <th>Trạng thái</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="projectsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="pricingPanel" class="panel" hidden>
+        <div class="panel-head">
+          <h2>Bảng giá</h2>
+          <button id="newPricingBtn" type="button">Thêm gói</button>
+        </div>
+        <div class="grid">
+          <form id="pricingForm" class="card form-card">
+            <input type="hidden" name="id" />
+            <div class="two-cols">
+              <label>Tên gói<input name="name" required /></label>
+              <label>Thứ tự<input name="sortOrder" type="number" value="0" /></label>
+            </div>
+            <label>Mô tả<textarea name="description" rows="2" required></textarea></label>
+            <div class="two-cols">
+              <label>Giá cũ<input name="oldPrice" placeholder="1.990.000" /></label>
+              <label>Giá hiện tại<input name="currentPrice" required placeholder="1.499.000" /></label>
+            </div>
+            <div class="two-cols">
+              <label>Tiền tệ<input name="currency" value="VNĐ" /></label>
+              <label>Nhãn nổi bật<input name="badge" placeholder="PHỔ BIẾN NHẤT" /></label>
+            </div>
+            <div class="two-cols">
+              <label>Nút CTA<input name="buttonLabel" placeholder="Chọn Gói PRO" /></label>
+              <label>Kiểu nút
+                <select name="buttonVariant">
+                  <option value="outline">Outline</option>
+                  <option value="primary">Primary</option>
+                </select>
+              </label>
+            </div>
+            <label>Tính năng, mỗi dòng một mục<textarea name="features" rows="8" required></textarea></label>
+            <div class="two-cols">
+              <label class="checkbox"><input name="isFeatured" type="checkbox" /> Gói nổi bật</label>
+              <label>Trạng thái
+                <select name="isActive">
+                  <option value="true">Hiển thị</option>
+                  <option value="false">Ẩn</option>
+                </select>
+              </label>
+            </div>
+            <div class="actions">
+              <button type="submit">Lưu gói</button>
+              <button class="ghost" type="button" data-reset="pricing">Làm mới</button>
+            </div>
+          </form>
+          <div class="card table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Gói</th>
+                  <th>Giá</th>
+                  <th>Trạng thái</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="pricingTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/admin/admin.js"></script>
+  </body>
+</html>
