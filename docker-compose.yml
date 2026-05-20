@@ -1,0 +1,38 @@
+name: mocmoc
+
+services:
+  web:
+    build:
+      context: ./fe
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOSTNAME: 0.0.0.0
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:4000}
+    depends_on:
+      api:
+        condition: service_started
+    expose:
+      - "3000"
+
+  api:
+    build:
+      context: ./be
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      APP_ORIGIN: ${APP_ORIGIN:-https://mocmoc.vn,http://localhost:3000}
+      DB_HOST: ${DB_HOST:-36.50.27.243}
+      DB_PORT: ${DB_PORT:-3306}
+      DB_USER: ${DB_USER:?DB_USER is required}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      DB_NAME: ${DB_NAME:-mocmoc}
+      DB_CONNECTION_LIMIT: ${DB_CONNECTION_LIMIT:-10}
+      TRUST_PROXY: ${TRUST_PROXY:-1}
+      RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
+    expose:
+      - "4000"

@@ -26,8 +26,8 @@ export const metadata = {
     description: "Giải pháp thiết kế website giá rẻ, chuyên nghiệp, tối ưu chi phí cho cá nhân và doanh nghiệp. Gọi ngay 0858 200 725.",
   },
   icons: {
-    icon: '/images/logonhoxoaphong.png',
-    apple: '/images/logonhoxoaphong.pn  g',
+    icon: "/images/logonhoxoaphong.png",
+    apple: "/images/logonhoxoaphong.png",
   },
   robots: {
     index: true,
@@ -35,9 +35,9 @@ export const metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   verification: {
