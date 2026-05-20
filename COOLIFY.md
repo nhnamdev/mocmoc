@@ -8,6 +8,7 @@ Project đã có `docker-compose.yml` ở thư mục gốc để deploy dạng D
 NEXT_PUBLIC_API_URL=https://admin.mocmoc.vn
 APP_ORIGIN=https://mocmoc.vn,https://www.mocmoc.vn,https://admin.mocmoc.vn
 ADMIN_API_KEY=your_strong_admin_key
+UPLOAD_DIR=/app/uploads
 DB_HOST=36.50.27.243
 DB_PORT=3306
 DB_USER=your_mysql_user
@@ -24,6 +25,15 @@ RUN_MIGRATIONS=true
 - Service `api` chạy port container `4000`. Khi gán domain cho backend/admin, dùng `https://admin.mocmoc.vn:4000`.
 
 Coolify vẫn public domain qua cổng 80/443; phần `:3000` và `:4000` chỉ để proxy biết container port nội bộ.
+
+## Upload ảnh
+
+Backend lưu ảnh upload trong `/app/uploads` và public qua `https://admin.mocmoc.vn/uploads/...`.
+Trên Coolify cần gắn persistent storage cho service `api`:
+
+- Type: `persistent`
+- Name: `mocmoc_uploads`
+- Mount path: `/app/uploads`
 
 ## Deploy qua API
 

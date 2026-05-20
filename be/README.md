@@ -11,6 +11,7 @@ Backend Express.js kết nối MySQL cho website MOCMOC.
 - `GET /admin`: trang quản trị dự án nổi bật và bảng giá.
 - `GET|POST|PUT|DELETE /api/admin/projects`: quản trị dự án nổi bật.
 - `GET|POST|PUT|DELETE /api/admin/pricing-plans`: quản trị bảng giá.
+- `POST /api/admin/uploads/projects`: tải ảnh dự án lên `/uploads/projects/<ten-du-an>/`.
 
 Body mẫu cho `POST /api/contacts`:
 
@@ -42,6 +43,7 @@ DB_USER=your_mysql_user
 DB_PASSWORD=your_mysql_password
 DB_NAME=default
 ADMIN_API_KEY=your_strong_admin_key
+UPLOAD_DIR=/app/uploads
 ```
 
 ## Chạy local

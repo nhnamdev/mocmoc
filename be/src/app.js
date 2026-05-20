@@ -16,7 +16,11 @@ if (config.trustProxy) {
   app.set("trust proxy", 1);
 }
 
-app.use(helmet());
+app.use(
+  helmet({
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  }),
+);
 app.use(
   cors({
     origin: config.appOrigins,
@@ -38,6 +42,7 @@ app.use(
 );
 
 app.use("/admin", express.static(path.join(__dirname, "admin")));
+app.use("/uploads", express.static(config.uploadDir, { maxAge: "30d" }));
 app.use("/api/health", healthRoutes);
 app.use("/api/contacts", contactRoutes);
 app.use("/api/site", siteRoutes);

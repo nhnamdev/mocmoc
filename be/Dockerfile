@@ -14,6 +14,9 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY package*.json ./
 COPY database ./database
 COPY src ./src
+RUN mkdir -p uploads
+
+VOLUME ["/app/uploads"]
 
 EXPOSE 4000
 

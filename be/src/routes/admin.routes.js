@@ -1,12 +1,16 @@
 const express = require("express");
 const adminController = require("../controllers/admin.controller");
+const uploadController = require("../controllers/upload.controller");
 const adminAuth = require("../middlewares/adminAuth");
+const { uploadProjectImage } = require("../middlewares/uploadImage");
 const asyncHandler = require("../utils/asyncHandler");
 const { validateProject, validatePricingPlan } = require("../validators/admin.validator");
 
 const router = express.Router();
 
 router.use(adminAuth);
+
+router.post("/uploads/projects", uploadProjectImage, asyncHandler(uploadController.uploadProjectImage));
 
 router.get("/projects", asyncHandler(adminController.listProjects));
 router.post("/projects", validateProject, asyncHandler(adminController.createProject));

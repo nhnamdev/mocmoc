@@ -96,6 +96,7 @@ const DEFAULT_PRICING_PLANS = [
 
 function normalizeImagePath(path) {
   if (!path) return "/images/logomocmoc.jpg";
+  if (path.startsWith("/uploads/")) return `${API_BASE_URL}${path}`;
   return path;
 }
 

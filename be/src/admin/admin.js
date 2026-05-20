@@ -9,6 +9,8 @@ const projectForm = document.querySelector("#projectForm");
 const pricingForm = document.querySelector("#pricingForm");
 const projectsTable = document.querySelector("#projectsTable");
 const pricingTable = document.querySelector("#pricingTable");
+const projectImageFileInput = document.querySelector("#projectImageFile");
+const projectImagePreview = document.querySelector("#projectImagePreview");
 
 adminKeyInput.value = localStorage.getItem("mocmoc_admin_key") || "";
 
@@ -49,17 +51,54 @@ async function api(path, options = {}) {
   return body.data;
 }
 
+async function uploadApi(path, formData) {
+  const adminKey = adminKeyInput.value.trim();
+  const response = await fetch(path, {
+    method: "POST",
+    headers: {
+      "X-Admin-Key": adminKey,
+    },
+    body: formData,
+  });
+
+  const body = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    throw new Error(body.message || "Không thể tải ảnh lên");
+  }
+
+  return body.data;
+}
+
 function formToObject(form) {
   return Object.fromEntries(new FormData(form).entries());
+}
+
+function getPreviewSrc(value) {
+  if (!value) return "";
+  return value.startsWith("/uploads/") ? value : value;
+}
+
+function updateProjectImagePreview(src) {
+  if (!src) {
+    projectImagePreview.hidden = true;
+    projectImagePreview.removeAttribute("src");
+    return;
+  }
+
+  projectImagePreview.src = getPreviewSrc(src);
+  projectImagePreview.hidden = false;
 }
 
 function resetProjectForm() {
   projectForm.reset();
   projectForm.elements.id.value = "";
+  projectForm.elements.image.value = "";
   projectForm.elements.width.value = 1200;
   projectForm.elements.height.value = 800;
   projectForm.elements.sortOrder.value = 0;
   projectForm.elements.blank.checked = true;
+  projectImageFileInput.value = "";
+  updateProjectImagePreview("");
 }
 
 function resetPricingForm() {
@@ -148,6 +187,34 @@ document.querySelector("#newPricingBtn").addEventListener("click", resetPricingF
 document.querySelector('[data-reset="project"]').addEventListener("click", resetProjectForm);
 document.querySelector('[data-reset="pricing"]').addEventListener("click", resetPricingForm);
 
+projectImageFileInput.addEventListener("change", () => {
+  const file = projectImageFileInput.files?.[0];
+  if (!file) return;
+
+  updateProjectImagePreview(URL.createObjectURL(file));
+});
+
+document.querySelector("#uploadProjectImageBtn").addEventListener("click", async () => {
+  const file = projectImageFileInput.files?.[0];
+  if (!file) {
+    showNotice("Vui lòng chọn ảnh trước khi tải lên.", true);
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("projectTitle", projectForm.elements.title.value || "du-an");
+  formData.append("image", file);
+
+  try {
+    const uploaded = await uploadApi("/api/admin/uploads/projects", formData);
+    projectForm.elements.image.value = uploaded.url;
+    updateProjectImagePreview(uploaded.url);
+    showNotice("Đã tải ảnh lên và điền đường dẫn.");
+  } catch (error) {
+    showNotice(error.message, true);
+  }
+});
+
 projectForm.addEventListener("submit", async (event) => {
   event.preventDefault();
   const raw = formToObject(projectForm);
@@ -226,6 +293,8 @@ document.addEventListener("click", async (event) => {
     projectForm.elements.sortOrder.value = item.sortOrder;
     projectForm.elements.blank.checked = item.blank;
     projectForm.elements.isActive.value = String(item.isActive);
+    projectImageFileInput.value = "";
+    updateProjectImagePreview(item.image);
   }
 
   if (deleteProjectId && confirm("Xóa dự án này?")) {

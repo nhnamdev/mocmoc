@@ -27,6 +27,7 @@ services:
       PORT: 4000
       APP_ORIGIN: ${APP_ORIGIN:-https://mocmoc.vn,https://www.mocmoc.vn,https://admin.mocmoc.vn,http://localhost:3000}
       ADMIN_API_KEY: ${ADMIN_API_KEY:?ADMIN_API_KEY is required}
+      UPLOAD_DIR: ${UPLOAD_DIR:-/app/uploads}
       DB_HOST: ${DB_HOST:-36.50.27.243}
       DB_PORT: ${DB_PORT:-3306}
       DB_USER: ${DB_USER:?DB_USER is required}
@@ -37,3 +38,8 @@ services:
       RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
     expose:
       - "4000"
+    volumes:
+      - mocmoc_uploads:/app/uploads
+
+volumes:
+  mocmoc_uploads:

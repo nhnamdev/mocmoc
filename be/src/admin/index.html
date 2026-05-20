@@ -36,7 +36,14 @@
             <input type="hidden" name="id" />
             <label>Tên dự án<input name="title" required /></label>
             <label>Link<input name="link" placeholder="#" /></label>
-            <label>Ảnh<input name="image" required placeholder="/images/example.png hoặc https://..." /></label>
+            <label>Ảnh
+              <input name="image" required readonly placeholder="Tải ảnh lên để tự điền đường dẫn" />
+              <div class="upload-row">
+                <input id="projectImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+                <button id="uploadProjectImageBtn" type="button">Tải ảnh lên</button>
+              </div>
+              <img id="projectImagePreview" class="image-preview" alt="Xem trước ảnh dự án" hidden />
+            </label>
             <div class="two-cols">
               <label>Rộng<input name="width" type="number" min="1" value="1200" /></label>
               <label>Cao<input name="height" type="number" min="1" value="800" /></label>

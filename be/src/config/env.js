@@ -1,4 +1,5 @@
 const dotenv = require("dotenv");
+const path = require("node:path");
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ const config = {
   appOrigins: parseOrigins(process.env.APP_ORIGIN || "http://localhost:3000"),
   trustProxy: toBoolean(process.env.TRUST_PROXY, false),
   adminApiKey: process.env.ADMIN_API_KEY || "",
+  uploadDir: process.env.UPLOAD_DIR || path.join(process.cwd(), "uploads"),
   db: {
     host: process.env.DB_HOST || "36.50.27.243",
     port: toNumber(process.env.DB_PORT, 3306),
