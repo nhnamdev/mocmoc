@@ -36,7 +36,7 @@ DB_HOST=36.50.27.243
 DB_PORT=3306
 DB_USER=your_mysql_user
 DB_PASSWORD=your_mysql_password
-DB_NAME=mocmoc
+DB_NAME=default
 ```
 
 ## Chạy local
